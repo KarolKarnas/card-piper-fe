@@ -1,0 +1,27 @@
+@use "../../scss/colors";
+@use "../../scss/fonts.scss";
+@use "../../scss/spacing.scss";
+@use "../../scss/breakpoints.scss";
+@use "../../scss/mixins.scss";
+
+.heading {
+  font-size: fonts.$xl6;
+  text-align: center;
+}
+
+.orange {
+  color: colors.$orange-500;
+
+  @include mixins.drop-shadow-md-color(
+    colors.$shadow-orange-700,
+    colors.$shadow-orange-600
+  );
+}
+
+.blue {
+  color: colors.$blue-500;
+  @include mixins.drop-shadow-md-color(
+    colors.$shadow-blue-700,
+    colors.$shadow-blue-600
+  );
+}
