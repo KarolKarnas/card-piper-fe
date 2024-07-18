@@ -1,5 +1,4 @@
-import Link from "next/link"
-import styles from "./buttonSubmit.module.scss"
+import styles from "./button-submit.module.scss"
 
 type Props = {
   text: string
@@ -8,7 +7,8 @@ type Props = {
 }
 const ButtonSubmit = ({ text, color, type }: Props) => {
   return (
-    <button type="submit"
+    <button
+      type="submit"
       className={`${styles.button} ${color === "orange" && styles.orange} ${
         color === "blue" && styles.blue
       } `}

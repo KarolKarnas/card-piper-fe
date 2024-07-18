@@ -1,9 +1,7 @@
 export enum Paths {
-	BASIC = '/',
-	AUTH = '/auth',
+  HOME = "/",
 
-	RELATIVE_AUTH_SIGNIN = '/signin',
-	RELATIVE_AUTH_SIGNUP = '/signup',
-	ABSOLUTE_AUTH_SIGNIN = '/auth/signin',
-	ABSOLUTE_AUTH_SIGNUP = '/auth/signup',
+  SIGN_IN = "/sign-in",
+  SIGN_UP = "/sign-up",
+  QUOTES = "/quotes",
 }

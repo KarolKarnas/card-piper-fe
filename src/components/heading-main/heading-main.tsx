@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 import styles from "./mainHeading.module.scss"
 
 type Props = {
-  children: ReactNode;
+  children: ReactNode
   color: "blue" | "orange"
 }
 const MainHeading = ({ color, children }: Props) => {
