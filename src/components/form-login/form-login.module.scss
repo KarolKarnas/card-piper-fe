@@ -1,0 +1,76 @@
+@use "../../styles/colors";
+@use "../../styles/fonts";
+@use "../../styles/mixins";
+@use "../../styles/spacing";
+@use "../../styles/breakpoints";
+
+.FormRoot {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$s2;
+  // @include breakpoints.lg {
+  //   flex-direction: row;
+  // }
+
+  .FormField {
+    display: grid;
+    margin-bottom: 10px;
+
+    input,
+    textarea,
+    button {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    .FormLabel {
+      font-size: fonts.$sm;
+      font-weight: 500;
+      line-height: 35px;
+      color: colors.$white-100;
+    }
+
+    .FormMessage {
+      font-size: fonts.$xs;
+      color: colors.$white-100;
+      opacity: 0.8;
+    }
+
+    .Input,
+    .Textarea {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+
+      font-size: fonts.$sm;
+      color: colors.$white-100;
+      background-color: rgba(colors.$grey-950, 1);
+      box-shadow: 0 0 0 1px colors.$navy-700;
+      &:hover {
+        box-shadow: 0 0 0 1px colors.$navy-500;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px colors.$navy-500;
+      }
+
+      &::selection {
+        background-color: colors.$navy-500;
+        color: white;
+      }
+    }
+
+    .Input {
+      padding: 0 10px;
+      height: 35px;
+      line-height: 1;
+    }
+
+    .Textarea {
+      resize: none;
+      padding: 10px;
+    }
+  }
+}

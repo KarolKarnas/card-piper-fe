@@ -33,5 +33,3 @@ export const { selectAll: selectAllQuotes } = quotesAdapter.getSelectors(
 )
 export const selectQuotesRequestState = (state: RootState) =>
   state.quotes.requestState
-
-export default quotesSlice.reducer

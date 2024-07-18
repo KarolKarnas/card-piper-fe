@@ -1,18 +1,18 @@
-import { useSigninMutation } from '../../lib/api/authApi';
-import { setCredentials } from '../../lib/slices/authSlice';
-import { useAppDispatch } from '../../lib/hooks';
-import { SigninRequestParams } from '../../types/request';
+import { useSigninMutation } from "../api/authApi"
+import { setCredentials } from "../store/authSlice"
+import { useAppDispatch } from "../store/hooks"
+import type { SigninRequestParams } from "../types/request"
 
 export const useSignin = () => {
-	const [signin] = useSigninMutation();
-	const dispatch = useAppDispatch();
+  const [signin] = useSigninMutation()
+  const dispatch = useAppDispatch()
 
-	const handleSignin = async (req: SigninRequestParams) => {
-		const { data } = await signin(req);
-		if (data) {
-			dispatch(setCredentials(data));
-		}
-	};
+  const handleSignin = async (req: SigninRequestParams) => {
+    const { data } = await signin(req)
+    if (data) {
+      dispatch(setCredentials(data))
+    }
+  }
 
-	return { handleSignin };
-};
+  return { handleSignin }
+}

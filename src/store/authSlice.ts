@@ -1,43 +1,38 @@
-import {
-	createSlice,
-	PayloadAction,
-	createEntityAdapter,
-} from '@reduxjs/toolkit';
-import { UserInfo } from '../../types/user';
-import { RequestState } from '../../types/request';
-import { RootState } from '../store';
+import type { PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
+import type { UserInfo } from "../types/user"
+import { RequestState } from "../types/request"
+import type { RootState } from "../store/store"
 
 export type StoreState = {
-	userInfo: UserInfo | null;
-	userInfoRequestState: RequestState;
-};
+  userInfo: UserInfo | null
+  userInfoRequestState: RequestState
+}
 
 const initialState: StoreState = {
-	userInfo: null,
-	userInfoRequestState: RequestState.IDLE,
-};
+  userInfo: null,
+  userInfoRequestState: RequestState.IDLE,
+}
 
 export const authSlice = createSlice({
-	name: 'auth',
-	initialState,
-	reducers: {
-		setCredentials: (state, action: PayloadAction<UserInfo>) => {
-			state.userInfo = action.payload;
-		},
+  name: "auth",
+  initialState,
+  reducers: {
+    setCredentials: (state, action: PayloadAction<UserInfo>) => {
+      state.userInfo = action.payload
+    },
 
-		setUserInfoRequestState: (state, action: PayloadAction<RequestState>) => {
-			state.userInfoRequestState = action.payload;
-		},
+    setUserInfoRequestState: (state, action: PayloadAction<RequestState>) => {
+      state.userInfoRequestState = action.payload
+    },
 
-		clearCredentials: (state) => {
-			state.userInfo = initialState.userInfo;
-		},
-	},
-});
+    clearCredentials: state => {
+      state.userInfo = initialState.userInfo
+    },
+  },
+})
 
 export const { setCredentials, clearCredentials, setUserInfoRequestState } =
-	authSlice.actions;
+  authSlice.actions
 
-export const selectUserInfo = (state: RootState) => state.auth.userInfo;
-
-export default authSlice.reducer;
+export const selectUserInfo = (state: RootState) => state.auth.userInfo
