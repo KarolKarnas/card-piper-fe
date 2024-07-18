@@ -36,3 +36,6 @@ export const { setCredentials, clearCredentials, setUserInfoRequestState } =
   authSlice.actions
 
 export const selectUserInfo = (state: RootState) => state.auth.userInfo
+
+export const selectUserInfoRequestState = (state: RootState) =>
+  state.auth.userInfoRequestState

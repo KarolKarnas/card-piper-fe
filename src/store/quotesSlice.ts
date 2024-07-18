@@ -7,7 +7,7 @@ import { RequestState } from "../types/request"
 // Create an entity adapter
 const quotesAdapter = createEntityAdapter({
   selectId: (quote: Quote) => quote.id,
-  sortComparer: (a, b) => b.popularity - a.popularity,
+  sortComparer: (a, b) => a.distance - b.distance,
 })
 
 const initialState = quotesAdapter.getInitialState({
