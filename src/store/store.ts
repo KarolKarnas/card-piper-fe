@@ -15,10 +15,16 @@ import storage from "redux-persist/lib/storage"
 import { quotesSlice } from "./quotesSlice"
 import { api } from "../api/apiSlice"
 import { authSlice } from "./authSlice"
+import { personalitiesSlice } from "./personalitiesSlice"
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(api, quotesSlice, authSlice)
+const rootReducer = combineSlices(
+  api,
+  quotesSlice,
+  authSlice,
+  personalitiesSlice,
+)
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>
 
@@ -27,7 +33,7 @@ const persistConfig = {
   version: 1,
   storage,
   whitelist: ["auth"],
-  blacklist: ["quotes", "api"],
+  blacklist: ["quotes", "api", "personalities"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -1,4 +1,5 @@
-import type { Personality } from "./user"
+import type { Entity } from "./personality"
+import type { PersonalityStats } from "./user"
 
 export enum RequestState {
   IDLE = "IDLE",
@@ -10,7 +11,14 @@ export enum RequestState {
 export type QuotesRequestParams = {
   skip: number
   take: number
-  userPersonality: Personality | null
+  userPersonality: PersonalityStats | null
+}
+
+export type PersonalityRequestParams = {
+  skip: number
+  take: number
+  userPersonality: PersonalityStats | null
+  entity: Entity
 }
 
 export type SignupRequestParams = {

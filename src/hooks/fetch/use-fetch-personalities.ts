@@ -1,21 +1,24 @@
 import { useEffect } from "react"
-import { useGetQuotesQuery } from "../../api/quotesApi"
 import { useAppDispatch } from "../../store/hooks"
-import { setAllQuotes } from "../../store/quotesSlice"
 import type { PersonalityStats } from "../../types/user"
+import { useGetPersonalitiesQuery } from "../../api/personalitiesApi"
+import type { Entity } from "../../types/personality"
+import { setAllPersonalities } from "../../store/personalitiesSlice"
 // import { QuotesRequestParams } from '../../../types/request';
 
-export const useFetchQuotes = (
+export const useFetchPersonalities = (
   skip: number,
   take: number,
   userPersonality: PersonalityStats | null,
+  entity: Entity,
 ) => {
   const dispatch = useAppDispatch()
 
-  const { data, isFetching, isError, refetch } = useGetQuotesQuery({
+  const { data, isFetching, isError, refetch } = useGetPersonalitiesQuery({
     skip,
     take,
     userPersonality,
+    entity,
   })
 
   useEffect(() => {
@@ -24,9 +27,8 @@ export const useFetchQuotes = (
 
   useEffect(() => {
     if (data) {
-
       // console.log(data)
-      dispatch(setAllQuotes(data))
+      dispatch(setAllPersonalities(data))
     }
   }, [data, dispatch])
 }

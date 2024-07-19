@@ -4,6 +4,7 @@ import { selectUserInfo } from "../../store/authSlice"
 import { useAppSelector } from "../../store/hooks"
 import { FormLoginRole } from "../../types/user"
 import { Quotes } from "../../components/quotes/Quotes"
+import { Personalities } from "../../components/personalities/personalities"
 
 export const Home = () => {
   const [signIn, setSignIn] = useState(true)
@@ -15,7 +16,8 @@ export const Home = () => {
         <>
           <h1>Welcome {user.email}</h1>
           <p>those are your recommended quotes sir</p>
-          <Quotes />
+          {/* <Quotes /> */}
+          <Personalities />
         </>
       ) : (
         <>
