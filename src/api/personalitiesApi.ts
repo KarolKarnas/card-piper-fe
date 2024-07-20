@@ -34,6 +34,7 @@ const personalitiesApi = api.injectEndpoints({
           params.sensingIntuition = 0
           params.thinkingFeeling = 0
         }
+
         return {
           url: URL_API_PERSONALITY,
           method: "GET",

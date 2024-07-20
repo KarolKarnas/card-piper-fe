@@ -10,7 +10,7 @@ export type UserCardProps = {
 export const UserCard = ({ user, distance }: UserCardProps) => {
   // const router = useRouter()
 
-  console.log("user ", user)
+  // console.log("user ", user.reactedBy)
 
   const changeDirectory = (email: string) => {
     // router.push(path)
@@ -40,6 +40,14 @@ export const UserCard = ({ user, distance }: UserCardProps) => {
 
         <h4>TITLE</h4>
         <p>CONTENT</p>
+        <h2>REACTIONS</h2>
+        {user.reactedBy.length > 0 &&
+          user.reactedBy.map(reaction => (
+            <p>
+              {reaction.type} by {reaction.user?.email}
+            </p>
+          ))}
+
         {/* <p>{card.content}</p> */}
         <Button text="Read more" color="orange" path={"some-path"} />
       </div>

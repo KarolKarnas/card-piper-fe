@@ -83,8 +83,7 @@ export type User = {
   id: number
   email: string
   personality: PersonalityStats
-  reactedBy: string
-  reactions: string
+  reactedBy: Reaction[]
 }
 
 // ENTITY
@@ -111,4 +110,27 @@ export type Personality = {
   quotes?: Quote
   character?: Character
   user?: User
+}
+
+// Reactions
+
+export enum ReactionType {
+  LOVE = "LOVE",
+  LIKE = "LIKE",
+  DISLIKE = "DISLIKE",
+  HATE = "HATE",
+}
+
+export type Reaction = {
+  id: number
+  entity: Entity
+  type: ReactionType
+  favorite: boolean
+  list: boolean
+  user?: User
+  quote?: Quote
+  book?: Book
+  author?: Author
+  character?: Character
+  reactedUser?: User
 }
