@@ -1,0 +1,79 @@
+@use "../../styles/colors";
+@use "../../styles/fonts.scss";
+@use "../../styles/spacing.scss";
+@use "../../styles/breakpoints.scss";
+@use "../../styles/mixins.scss";
+
+.button {
+  width: 100%;
+  border-radius: 15px;
+  gap: 1rem;
+  border: 1px solid;
+  height: 40px;
+  font-size: fonts.$xs;
+  text-transform: uppercase;
+  transition-duration: 300ms;
+  &:hover {
+    cursor: pointer;
+  }
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+
+  }
+  span {
+    color: colors.$white-300;
+        @include mixins.drop-shadow-md-color(
+      colors.$shadow-white-700,
+      colors.$shadow-white-600
+    );
+  }
+}
+
+.orange {
+  background-color: rgba(colors.$orange-500, $alpha: 0.5);
+  color: colors.$orange-500;
+  &:hover {
+    background-color: rgba(colors.$orange-500, $alpha: 0.75);
+  }
+  a {
+    color: colors.$white-300;
+    @include mixins.drop-shadow-md-color(
+      colors.$shadow-white-700,
+      colors.$shadow-white-600
+    );
+  }
+}
+
+.blue {
+  background-color: rgba(colors.$blue-500, $alpha: 0.5);
+  color: colors.$blue-500;
+  &:hover {
+    background-color: rgba(colors.$blue-500, $alpha: 0.75);
+  }
+  a {
+    color: colors.$white-300;
+        @include mixins.drop-shadow-md-color(
+      colors.$shadow-white-700,
+      colors.$shadow-white-600
+    );
+  }
+}
+.pink {
+  background-color: rgba(colors.$pink-500, $alpha: 0.5);
+  color: colors.$pink-500;
+  &:hover {
+    background-color: rgba(colors.$pink-500, $alpha: 0.75);
+  }
+  a {
+    color: colors.$white-300;
+        @include mixins.drop-shadow-md-color(
+      colors.$shadow-white-700,
+      colors.$shadow-white-600
+    );
+  }
+}

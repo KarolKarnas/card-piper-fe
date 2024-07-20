@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useGetQuotesQuery } from "../../api/quotesApi"
 import { useAppDispatch } from "../../store/hooks"
 import { setAllQuotes } from "../../store/quotesSlice"
-import type { PersonalityStats } from "../../types/user"
+import type { PersonalityStats } from "../../types/entities"
 // import { QuotesRequestParams } from '../../../types/request';
 
 export const useFetchQuotes = (
@@ -24,7 +24,6 @@ export const useFetchQuotes = (
 
   useEffect(() => {
     if (data) {
-
       // console.log(data)
       dispatch(setAllQuotes(data))
     }

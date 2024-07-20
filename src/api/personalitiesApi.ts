@@ -2,7 +2,7 @@ import { api } from "./apiSlice"
 import type { PersonalityRequestParams } from "../types/request"
 import { RequestState } from "../types/request"
 
-import type { Personality } from "../types/personality"
+import type { Personality } from "../types/entities"
 import {
   setAllPersonalities,
   setRequestState,
@@ -15,16 +15,17 @@ const personalitiesApi = api.injectEndpoints({
     //TODO change response type
     getPersonalities: build.query<Personality[], PersonalityRequestParams>({
       query: args => {
-        const { skip, take, userPersonality, entity } = args
+        const { skip, take, userPersonality, entity, entities } = args
 
         let params = {
           skip,
           take,
           ...userPersonality,
           entity,
+          entities,
         }
 
-        console.log(params)
+        // console.log("params", params)
 
         if (!userPersonality) {
           params.assertiveTurbulent = 0

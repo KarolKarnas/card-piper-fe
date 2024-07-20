@@ -2,11 +2,11 @@ import * as Form from "@radix-ui/react-form"
 import styles from "./form-login.module.scss"
 
 import ButtonSubmit from "../button-submit/button-submit"
-import type { SyntheticEvent} from "react";
+import type { SyntheticEvent } from "react"
 import { useState } from "react"
 import { useSignin } from "../../hooks/use-signin"
 import { useSignup } from "../../hooks/use-signup"
-import { FormLoginRole } from "../../types/user"
+import { FormLoginRole } from "../../types/entities"
 
 export type FormLoginProps = {
   role: FormLoginRole

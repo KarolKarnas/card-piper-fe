@@ -1,25 +1,31 @@
 @mixin drop-shadow-sm {
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
 }
+
 @mixin drop-shadow {
   filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1))
     drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 }
+
 @mixin drop-shadow-md {
   filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
     drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
 }
+
 @mixin drop-shadow-lg {
   filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
     drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 }
+
 @mixin drop-shadow-xl {
   filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))
     drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
 }
+
 @mixin drop-shadow-2xl {
   filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
 }
+
 @mixin drop-shadow-none {
   filter: drop-shadow(0 0 #0000);
 }
@@ -27,6 +33,7 @@
 @mixin drop-shadow-md-color($color, $color2) {
   filter: drop-shadow(0 4px 3px $color) drop-shadow(0 2px 2px $color2);
 }
+
 @mixin drop-shadow-lg-color($color, $color2) {
   filter: drop-shadow(0 10px 8px $color) drop-shadow(0 6px 4px $color2);
 }

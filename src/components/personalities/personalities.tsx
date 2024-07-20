@@ -8,12 +8,17 @@ import {
   selectUserInfo,
   selectUserInfoRequestState,
 } from "../../store/authSlice"
-import { Entity } from "../../types/personality"
+import { Entity } from "../../types"
 import {
   selectAllPersonalities,
   selectPersonalitiesRequestState,
 } from "../../store/personalitiesSlice"
 import { useFetchPersonalities } from "../../hooks/fetch/use-fetch-personalities"
+import { AuthorCard } from "../entity-card/author-card"
+import { BookCard } from "../entity-card/book-card"
+import { QuoteCard } from "../entity-card/quote-card"
+import { CharacterCard } from "../entity-card/character-card"
+import { UserCard } from "../entity-card/user-card"
 
 const optionsTake = [5, 10, 20, 30]
 const optionsSkip = [0, 1, 2, 3, 4, 5]
@@ -24,7 +29,7 @@ export const Personalities = () => {
   const [entity, setEntity] = useState(Entity.AUTHOR)
   const [entities, setEntities] = useState<Entity[]>(Object.values(Entity))
 
-  console.log(entities)
+  // console.log(entities)
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOptions = Array.from(e.target.selectedOptions).map(
@@ -54,6 +59,7 @@ export const Personalities = () => {
     take,
     user ? user.personality : null,
     entity,
+    entities,
   )
 
   const data = useAppSelector(selectAllPersonalities)
@@ -152,16 +158,46 @@ export const Personalities = () => {
           ))}
         </select>
       </div>
-      {data.map(personality => (
-        <blockquote style={{ marginBottom: "100px" }} key={personality.id}>
-          &ldquo;{personality.entity}&rdquo;
-          <footer>
-            <strong>DISTANCE {personality.distance}</strong>
-            <br></br>
-            <cite>{personality.judgingPerceiving}</cite>
-          </footer>
-        </blockquote>
-      ))}
+      <div className={styles.feed}>
+        {data.map(personality => (
+          <div
+            className={styles.card}
+            key={`${personality.id}_${personality.distance}`}
+          >
+            {/* <EntityCard personality={personality} /> */}
+            {personality.author && (
+              <AuthorCard
+                author={personality.author}
+                distance={personality.distance}
+              />
+            )}
+            {personality.book && (
+              <BookCard
+                book={personality.book}
+                distance={personality.distance}
+              />
+            )}
+            {personality.quote && (
+              <QuoteCard
+                quote={personality.quote}
+                distance={personality.distance}
+              />
+            )}
+            {personality.character && (
+              <CharacterCard
+                character={personality.character}
+                distance={personality.distance}
+              />
+            )}
+            {personality.user && (
+              <UserCard
+                user={personality.user}
+                distance={personality.distance}
+              />
+            )}
+          </div>
+        ))}
+      </div>
       <div ref={containerRef} style={{ height: "10px" }} />
       {isLoading && <div>Loading more...</div>}
     </div>
