@@ -1,7 +1,7 @@
 import { api } from "./apiSlice"
 import type { QuotesRequestParams } from "../types/request"
 import { RequestState } from "../types/request"
-import type { Quote } from "../types/quotes"
+import type { Quote } from "../types/entities"
 import { setAllQuotes, setRequestState } from "../store/quotesSlice"
 
 const URL_API_QUOTES = "/quotes"

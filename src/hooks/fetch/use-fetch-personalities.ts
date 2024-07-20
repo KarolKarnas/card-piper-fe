@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useAppDispatch } from "../../store/hooks"
-import type { PersonalityStats } from "../../types/user"
+import type { PersonalityStats } from "../../types/entities"
 import { useGetPersonalitiesQuery } from "../../api/personalitiesApi"
-import type { Entity } from "../../types/personality"
+import type { Entity } from "../../types/entities"
 import { setAllPersonalities } from "../../store/personalitiesSlice"
 // import { QuotesRequestParams } from '../../../types/request';
 
@@ -11,6 +11,7 @@ export const useFetchPersonalities = (
   take: number,
   userPersonality: PersonalityStats | null,
   entity: Entity,
+  entities: Entity[],
 ) => {
   const dispatch = useAppDispatch()
 
@@ -19,7 +20,10 @@ export const useFetchPersonalities = (
     take,
     userPersonality,
     entity,
+    entities,
   })
+
+  console.log(data)
 
   useEffect(() => {
     refetch()

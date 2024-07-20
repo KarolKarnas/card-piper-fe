@@ -1,4 +1,4 @@
-import type { UserInfo } from "../types/user"
+import type { UserInfo } from "../types/entities"
 import { api } from "./apiSlice"
 import type { SigninRequestParams, SignupRequestParams } from "../types/request"
 import { RequestState } from "../types/request"

@@ -1,0 +1,113 @@
+@use "../../styles/colors";
+@use "../../styles/fonts.scss";
+@use "../../styles/spacing.scss";
+@use "../../styles/breakpoints.scss";
+@use "../../styles/mixins";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: spacing.$s4 spacing.$s6;
+  border-radius: 15px;
+  background-color: colors.$grey-600;
+
+  transition-property: transform, background-color;
+  transition-duration: 100ms;
+  &:hover {
+    cursor: pointer;
+    // transform: scale(1.015);
+    transition-property: transform, background-color;
+    transition-duration: 200ms;
+    background-color: colors.$orange-500;
+  }
+
+  
+
+  // img {
+  //   height: 100%;
+  //   width: 100%;
+  //   // border-radius: 50px 0 0 50px;
+  //   // width: 60%;
+  // }
+
+  .content-container {
+    border-radius: 15px 15px 15px 15px;
+    width: 100%;
+    background-color: rgba(colors.$grey-950, 0.9);
+    // backdrop-filter: blur(10px);
+    padding: spacing.$s2;
+    // color: colors.$grey-600;
+    align-items: center;
+    // backdrop-filter: blur(3px);
+    @include breakpoints.md {
+      padding: spacing.$s4;
+    }
+
+    .date-container {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      color: colors.$grey-600;
+      font-size: fonts.$xs;
+      @include mixins.drop-shadow-md-color(
+        colors.$shadow-white-700,
+        colors.$shadow-white-600
+      );
+    }
+    h2 {
+      margin: spacing.$s2 0;
+      font-size: fonts.$xl;
+      color: colors.$orange-500;
+      text-align: center;
+      @include mixins.drop-shadow-md-color(
+        colors.$shadow-orange-700,
+        colors.$shadow-orange-600
+      );
+      @include breakpoints.md {
+        font-size: fonts.$xl4;
+      }
+    }
+    h3 {
+      font-size: fonts.$sm;
+      text-align: center;
+      color: colors.$purple-100;
+      @include mixins.drop-shadow-md-color(
+        colors.$shadow-white-700,
+        colors.$shadow-white-600
+      );
+      @include breakpoints.md {
+        font-size: fonts.$base;
+      }
+    }
+
+    h4 {
+      font-size: fonts.$sm;
+
+      color: colors.$white-100;
+      @include mixins.drop-shadow-md-color(
+        colors.$shadow-white-700,
+        colors.$shadow-white-600
+      );
+      @include breakpoints.md {
+        font-size: fonts.$base;
+      }
+    }
+
+    p {
+      font-size: fonts.$sm;
+      text-align: center;
+      hyphens: auto;
+      color: colors.$white-300;
+      @include mixins.drop-shadow-md-color(
+        colors.$shadow-white-700,
+        colors.$shadow-white-600
+      );
+      @include breakpoints.md {
+        font-size: fonts.$base;
+      }
+    }
+  }
+
+}

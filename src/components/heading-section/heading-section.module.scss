@@ -5,8 +5,20 @@
 @use "../../styles/mixins.scss";
 
 .heading {
-  font-size: fonts.$xl6;
+  font-size: fonts.$base;
   text-align: center;
+
+  @include breakpoints.md {
+    font-size: fonts.$xl2;
+  }
+}
+
+.purple {
+  color: colors.$purple-100;
+  @include mixins.drop-shadow-md-color(
+    colors.$shadow-white-700,
+    colors.$shadow-white-600
+  );
 }
 
 .orange {

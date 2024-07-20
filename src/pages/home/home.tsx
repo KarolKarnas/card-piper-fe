@@ -2,7 +2,7 @@ import { useState } from "react"
 import FormLogin from "../../components/form-login/form-login"
 import { selectUserInfo } from "../../store/authSlice"
 import { useAppSelector } from "../../store/hooks"
-import { FormLoginRole } from "../../types/user"
+import { FormLoginRole } from "../../types/entities"
 import { Quotes } from "../../components/quotes/Quotes"
 import { Personalities } from "../../components/personalities/personalities"
 
