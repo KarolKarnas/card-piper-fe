@@ -19,7 +19,7 @@ import { BookCard } from "../entity-card/book-card"
 import { QuoteCard } from "../entity-card/quote-card"
 import { CharacterCard } from "../entity-card/character-card"
 import { UserCard } from "../entity-card/user-card"
-
+import { selectUserMe, selectUserMeRequestState } from "../../store/usersSlice"
 const optionsTake = [5, 10, 20, 30]
 const optionsSkip = [0, 1, 2, 3, 4, 5]
 
@@ -29,7 +29,6 @@ export const Personalities = () => {
   const [entity, setEntity] = useState(Entity.AUTHOR)
   const [entities, setEntities] = useState<Entity[]>(Object.values(Entity))
 
-  // console.log(entities)
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOptions = Array.from(e.target.selectedOptions).map(
@@ -39,25 +38,20 @@ export const Personalities = () => {
   }
 
   const containerRef = useRef<HTMLDivElement>(null)
-  // Using a query hook automatically fetches data and returns query values
+  const userMe = useAppSelector(selectUserMe)
+  const userMeRequestState = useAppSelector(selectUserMeRequestState)
 
-  const user = useAppSelector(selectUserInfo)
-  const userRequestState = useAppSelector(selectUserInfoRequestState)
   const personalitiesRequestState = useAppSelector(
     selectPersonalitiesRequestState,
   )
   const isLoading =
     personalitiesRequestState === RequestState.LOADING ||
-    userRequestState === RequestState.LOADING
-  // const { data, isError, isLoading, isSuccess } = useGetQuotesQuery({
-  // 	skip: skip * take,
-  // 	take,
-  // });
+    userMeRequestState === RequestState.LOADING
 
   useFetchPersonalities(
     skip * take,
     take,
-    user ? user.personality : null,
+    userMe ? userMe.personality : null,
     entity,
     entities,
   )
@@ -86,23 +80,7 @@ export const Personalities = () => {
     }
   }, [containerRef.current]) // Ensure to update observer when containerRef changes
 
-  // if (isError) {
-  // 	return (
-  // 		<div>
-  // 			<h1>There was an error!!!</h1>
-  // 		</div>
-  // 	);
-  // }
-
-  // if (isLoading || data.length === 0) {
-  //   return <div>Loading...</div>
-  // }
-
-  // if (data) {
-  // 	console.log(data);
-  // }
-
-  return (
+   return (
     <div className={styles.container}>
       <h3>Select the PERSONALITY of Quotes to Fetch:</h3>
       <div>

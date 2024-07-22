@@ -54,19 +54,21 @@ const personalitiesApi = api.injectEndpoints({
       },
       keepUnusedDataFor: 5,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        dispatch(setRequestState(RequestState.LOADING))
         try {
-          dispatch(setRequestState(RequestState.LOADING))
-          const { data } = await queryFulfilled
-          if (data) {
-            dispatch(setRequestState(RequestState.SUCCESS))
-            dispatch(setAllPersonalities(data))
-          }
+          await queryFulfilled
+          dispatch(setRequestState(RequestState.SUCCESS))
+          // const { data } = await queryFulfilled
+          // if (data) {
+          //   dispatch(setRequestState(RequestState.SUCCESS))
+          //   // dispatch(setAllPersonalities(data))
+          // }
         } catch (error) {
           dispatch(setRequestState(RequestState.ERROR))
           console.log(error)
         }
       },
-      providesTags: (result, error) => [{ type: "Quotes" }],
+      providesTags: (result, error) => [{ type: "Personalities" }],
     }),
   }),
 })

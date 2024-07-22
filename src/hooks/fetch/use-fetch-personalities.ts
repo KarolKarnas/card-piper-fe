@@ -15,15 +15,13 @@ export const useFetchPersonalities = (
 ) => {
   const dispatch = useAppDispatch()
 
-  const { data, isFetching, isError, refetch } = useGetPersonalitiesQuery({
+   const { data, isFetching, isError, refetch } = useGetPersonalitiesQuery({
     skip,
     take,
     userPersonality,
     entity,
     entities,
   })
-
-  console.log(data)
 
   useEffect(() => {
     refetch()

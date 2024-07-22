@@ -16,6 +16,8 @@ import { quotesSlice } from "./quotesSlice"
 import { api } from "../api/apiSlice"
 import { authSlice } from "./authSlice"
 import { personalitiesSlice } from "./personalitiesSlice"
+import { usersSlice } from "./usersSlice"
+import { reactionsSlice } from "./reactionsSlice"
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
@@ -24,6 +26,8 @@ const rootReducer = combineSlices(
   quotesSlice,
   authSlice,
   personalitiesSlice,
+  usersSlice,
+  reactionsSlice
 )
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>
@@ -33,7 +37,7 @@ const persistConfig = {
   version: 1,
   storage,
   whitelist: ["auth"],
-  blacklist: ["quotes", "api", "personalities"],
+  blacklist: ["quotes", "api", "personalities", "users"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

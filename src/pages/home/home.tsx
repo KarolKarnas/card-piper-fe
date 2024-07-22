@@ -5,20 +5,25 @@ import { useAppSelector } from "../../store/hooks"
 import { FormLoginRole } from "../../types/entities"
 import { Quotes } from "../../components/quotes/Quotes"
 import { Personalities } from "../../components/personalities/personalities"
+import { Sidebar } from "../../components/sidebar/sidebar"
+import styles from "./home.module.scss"
+import { Header } from "../../components/header/header"
+import { selectUserMe } from "../../store/usersSlice"
+import { useFetchUserMe } from "../../hooks/fetch/use-fetch-user-me"
 
 export const Home = () => {
   const [signIn, setSignIn] = useState(true)
   const user = useAppSelector(selectUserInfo)
-
+  const userMe = useAppSelector(selectUserMe)
+  useFetchUserMe()
   return (
-    <div>
-      {user ? (
-        <>
-          <h1>Welcome {user.email}</h1>
-          <p>those are your recommended quotes sir</p>
-          {/* <Quotes /> */}
+    <div className={styles.home}>
+      <Header />
+      {userMe && user ? (
+        <div className={styles.main}>
           <Personalities />
-        </>
+          <Sidebar />
+        </div>
       ) : (
         <>
           <h1>You need account sir</h1>

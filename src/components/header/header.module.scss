@@ -1,0 +1,12 @@
+@use "../../styles/colors";
+
+.header {
+  position: sticky;
+  height: 75px;
+  top: 0;
+  z-index: 10;
+  background-color: colors.$yellow-200;
+  .logo {
+    height: 100%;
+  }
+}

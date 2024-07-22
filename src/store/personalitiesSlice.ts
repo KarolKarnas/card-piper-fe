@@ -2,7 +2,8 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 import type { RootState } from "./store"
 import { RequestState } from "../types/request"
-import type { Personality } from "../types/personality"
+import type { Personality } from "../types"
+
 
 // Create an entity adapter
 const personalitiesAdapter = createEntityAdapter({
@@ -27,7 +28,8 @@ export const personalitiesSlice = createSlice({
   },
 })
 
-export const { setAllPersonalities, setRequestState } = personalitiesSlice.actions
+export const { setAllPersonalities, setRequestState } =
+  personalitiesSlice.actions
 export const { selectAll: selectAllPersonalities } =
   personalitiesAdapter.getSelectors((state: RootState) => state.personalities)
 

@@ -20,17 +20,15 @@ export interface UserInfo {
   role: UserRole | null
 }
 
-export type UserOrder = Omit<UserInfo, "isAdmin">
-
-export interface UserOrderPassword extends Omit<UserInfo, "isAdmin"> {
-  password: string
-}
-
-export interface UserInfoOptions {
-  _id?: string
-  name?: string
-  email?: string
-  isAdmin?: boolean
+export type UserMe = {
+  id: number
+  email: string
+  role: UserRole
+  firstName: string | null
+  lastName: string | null
+  personality: PersonalityStats
+  total_reaction: TotalReaction
+  latest_reaction: LatestReaction
 }
 
 export enum FormLoginRole {
@@ -86,6 +84,11 @@ export type User = {
   reactedBy: Reaction[]
 }
 
+export type UserReacted = {
+  id: number
+  email: string
+}
+
 // ENTITY
 
 export enum Entity {
@@ -107,7 +110,7 @@ export type Personality = {
   entity: Entity
   book?: Book
   author?: Author
-  quotes?: Quote
+  quote?: Quote
   character?: Character
   user?: User
 }
@@ -132,5 +135,46 @@ export type Reaction = {
   book?: Book
   author?: Author
   character?: Character
-  reactedUser?: User
+  reactedUser?: UserReacted
+  userId: number
+  quoteId: number | null
+  bookId: number | null
+  authorId: number | null
+  characterId: number | null
+  reactedUserId: number | null
 }
+
+export type ReactionCreate = {
+  id: number
+  entity: Entity
+  type: ReactionType
+  favorite: boolean
+  list: boolean
+  userId?: number
+  quoteId: number | null
+  bookId: number | null
+  authorId: number | null
+  characterId: number | null
+  reactedUserId: number | null
+}
+
+// export type EntityTotal = {
+//   TOTAL: number
+//   LOVE: number
+//   LIKE: number
+//   DISLIKE: number
+//   HATE: number
+// }
+
+export type EntityTotal = Record<ReactionType | "TOTAL", number>
+// export type ReactionTotal = {
+//   TOTAL: number
+//   AUTHOR: EntityTotal
+//   BOOK: EntityTotal
+//   QUOTE: EntityTotal
+//   CHARACTER: EntityTotal
+//   USER: EntityTotal
+// }
+export type TotalReaction = Record<Entity, EntityTotal> & { TOTAL: number }
+
+export type LatestReaction = Record<Entity, Record<ReactionType, Reaction[]>>

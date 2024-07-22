@@ -9,7 +9,7 @@ type Props = {
 }
 
 const logText = (e: SyntheticEvent) => {
-  console.log("button")
+  // console.log("button")
   e.stopPropagation()
 }
 
