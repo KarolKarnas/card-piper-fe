@@ -26,8 +26,6 @@ const personalitiesApi = api.injectEndpoints({
           entities,
         }
 
-        console.log("params", params)
-
         if (!userPersonality) {
           params.assertiveTurbulent = 0
           params.extroversionIntroversion = 0
@@ -57,8 +55,6 @@ const personalitiesApi = api.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         dispatch(setRequestState(RequestState.LOADING))
         try {
-          // await queryFulfilled
-          // dispatch(setRequestState(RequestState.SUCCESS))
           const { data } = await queryFulfilled
           if (data) {
             dispatch(setRequestState(RequestState.SUCCESS))

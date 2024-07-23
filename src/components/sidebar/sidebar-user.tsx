@@ -4,10 +4,12 @@ import styles from "./sidebar-user.module.scss"
 
 export const SidebarUser = () => {
   const userMe = useAppSelector(selectUserMe)
-
+  const dark = userMe?.darkTheme
+  console.log(dark)
   return (
       <div className={styles["sidebar-user"]}>
         <h1>USER DETAILS</h1>
+        <p>Are you fear of the dark? <strong>{!dark ? 'Yes' : 'No'}</strong></p>
         <h2>{userMe?.email}</h2>
         <h2>{userMe?.role}</h2>
         <h1>{userMe?.personalityType}</h1>

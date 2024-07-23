@@ -15,9 +15,6 @@ export enum UserRole {
 
 export interface UserInfo {
   access_token: string
-  email: string
-  personality: PersonalityStats
-  role: UserRole | null
 }
 
 export type UserMe = {
@@ -30,6 +27,7 @@ export type UserMe = {
   total_reaction: TotalReaction
   latest_reaction: LatestReaction
   personalityType: string
+  darkTheme: boolean
 }
 
 export enum FormLoginRole {

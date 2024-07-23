@@ -10,8 +10,6 @@ export type CharacterCardProps = {
   distance: number
 }
 
-
-
 export const CharacterCard = ({ character, distance }: CharacterCardProps) => {
   const { handleCreateReaction } = useCreateReaction()
 
