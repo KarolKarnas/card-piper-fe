@@ -1,148 +1,111 @@
-// import { useGetQuotesQuery } from "../../../lib/api/quotesApi"
-import { useEffect, useRef, useState } from "react"
-import styles from "./personalities.module.scss"
-import { useAppSelector } from "../../store/hooks"
-import { useFetchQuotes } from "../../hooks/fetch/use-fetch-quotes"
-import { RequestState } from "../../types/request"
+import  { useEffect, useRef, useState } from "react";
+import styles from "./personalities.module.scss";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RequestState } from "../../types/request";
 import {
-  selectUserInfo,
-  selectUserInfoRequestState,
-} from "../../store/authSlice"
-import { Entity } from "../../types"
-import {
+  clearAllPersonalities,
   selectAllPersonalities,
   selectPersonalitiesRequestState,
-} from "../../store/personalitiesSlice"
-import { useFetchPersonalities } from "../../hooks/fetch/use-fetch-personalities"
-import { AuthorCard } from "../entity-card/author-card"
-import { BookCard } from "../entity-card/book-card"
-import { QuoteCard } from "../entity-card/quote-card"
-import { CharacterCard } from "../entity-card/character-card"
-import { UserCard } from "../entity-card/user-card"
-import { selectUserMe, selectUserMeRequestState } from "../../store/usersSlice"
-const optionsTake = [5, 10, 20, 30]
-const optionsSkip = [0, 1, 2, 3, 4, 5]
+} from "../../store/personalitiesSlice";
+import { useFetchPersonalities } from "../../hooks/fetch/use-fetch-personalities";
+import { Entity } from "../../types";
+import { AuthorCard } from "../entity-card/author-card";
+import { BookCard } from "../entity-card/book-card";
+import { QuoteCard } from "../entity-card/quote-card";
+import { CharacterCard } from "../entity-card/character-card";
+import { UserCard } from "../entity-card/user-card";
+import { selectUserMe, selectUserMeRequestState } from "../../store/usersSlice";
 
 export const Personalities = () => {
-  const [skip, setSkip] = useState(0)
-  const [take, setTake] = useState(10)
-  const [entity, setEntity] = useState(Entity.AUTHOR)
-  const [entities, setEntities] = useState<Entity[]>(Object.values(Entity))
+  const [skip, setSkip] = useState(0);
+  const [take, setTake] = useState(10);
+  const [entity, setEntity] = useState(Entity.AUTHOR);
+  const [entities, setEntities] = useState<Entity[]>(Object.values(Entity));
+  // const [clear, setClear] = useState(false);
 
+  const dispatch = useAppDispatch();
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(e.target.selectedOptions).map(
-      option => option.value as Entity,
-    )
-    setEntities(selectedOptions)
-  }
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(clearAllPersonalities());
+    const value = e.target.value as Entity;
+    setEntities((prev) =>
+      e.target.checked
+        ? [...prev, value]
+        : prev.filter((entity) => entity !== value)
+    );
+    setSkip(0);
+    // setClear(true);
+  };
 
-  const containerRef = useRef<HTMLDivElement>(null)
-  const userMe = useAppSelector(selectUserMe)
-  const userMeRequestState = useAppSelector(selectUserMeRequestState)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const userMe = useAppSelector(selectUserMe);
+  const userMeRequestState = useAppSelector(selectUserMeRequestState);
 
-  const personalitiesRequestState = useAppSelector(
-    selectPersonalitiesRequestState,
-  )
+  const personalitiesRequestState = useAppSelector(selectPersonalitiesRequestState);
   const isLoading =
     personalitiesRequestState === RequestState.LOADING ||
-    userMeRequestState === RequestState.LOADING
+    userMeRequestState === RequestState.LOADING;
 
-  useFetchPersonalities(
+  const { refetch } = useFetchPersonalities(
     skip * take,
     take,
     userMe ? userMe.personality : null,
     entity,
     entities,
-  )
+    // clear
+  );
 
-  const data = useAppSelector(selectAllPersonalities)
+  useEffect(() => {
+    refetch();
+    // setClear(false);
+  }, [entities, skip, take, userMe, refetch]);
+
+  const data = useAppSelector(selectAllPersonalities);
 
   const observer = useRef(
     new IntersectionObserver(
-      entries => {
+      (entries) => {
         if (entries[0].isIntersecting && !isLoading) {
-          setSkip(prevSkip => prevSkip + 1)
+          setSkip((prevSkip) => prevSkip + 1);
         }
       },
-      { threshold: 1 },
-    ),
-  )
+      { threshold: 1 }
+    )
+  );
 
   useEffect(() => {
     if (containerRef.current) {
-      observer.current.observe(containerRef.current)
+      observer.current.observe(containerRef.current);
     }
     return () => {
       if (containerRef.current) {
-        observer.current.unobserve(containerRef.current)
+        observer.current.unobserve(containerRef.current);
       }
-    }
-  }, [containerRef.current]) // Ensure to update observer when containerRef changes
+    };
+  }, [containerRef.current]);
 
-   return (
+  return (
     <div className={styles.container}>
-      <h3>Select the PERSONALITY of Quotes to Fetch:</h3>
-      <div>
-        <select
-          className={styles.select}
-          multiple
-          value={entities}
-          onChange={handleSelectChange}
-        >
-          {Object.values(Entity).map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          className={styles.select}
-          value={entity}
-          onChange={e => {
-            setEntity(e.target.value as Entity)
-          }}
-        >
-          {Object.values(Entity).map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          className={styles.select}
-          value={take}
-          onChange={e => {
-            setTake(Number(e.target.value))
-          }}
-        >
-          {optionsTake.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          className={styles.select}
-          value={skip}
-          onChange={e => {
-            setSkip(Number(e.target.value))
-          }}
-        >
-          {optionsSkip.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+      <div className={styles.select}>
+        {Object.values(Entity).map((option) => (
+          <div key={option}>
+            <input
+              type="checkbox"
+              id={option}
+              value={option}
+              checked={entities.includes(option)}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor={option}>{option}</label>
+          </div>
+        ))}
       </div>
       <div className={styles.feed}>
-        {data.map(personality => (
+        {data.map((personality) => (
           <div
             className={styles.card}
             key={`${personality.id}_${personality.distance}`}
           >
-            {/* <EntityCard personality={personality} /> */}
             {personality.author && (
               <AuthorCard
                 author={personality.author}
@@ -150,28 +113,16 @@ export const Personalities = () => {
               />
             )}
             {personality.book && (
-              <BookCard
-                book={personality.book}
-                distance={personality.distance}
-              />
+              <BookCard book={personality.book} distance={personality.distance} />
             )}
             {personality.quote && (
-              <QuoteCard
-                quote={personality.quote}
-                distance={personality.distance}
-              />
+              <QuoteCard quote={personality.quote} distance={personality.distance} />
             )}
             {personality.character && (
-              <CharacterCard
-                character={personality.character}
-                distance={personality.distance}
-              />
+              <CharacterCard character={personality.character} distance={personality.distance} />
             )}
             {personality.user && (
-              <UserCard
-                user={personality.user}
-                distance={personality.distance}
-              />
+              <UserCard user={personality.user} distance={personality.distance} />
             )}
           </div>
         ))}
@@ -179,5 +130,5 @@ export const Personalities = () => {
       <div ref={containerRef} style={{ height: "10px" }} />
       {isLoading && <div>Loading more...</div>}
     </div>
-  )
-}
+  );
+};

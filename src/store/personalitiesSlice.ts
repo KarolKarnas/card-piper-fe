@@ -4,9 +4,8 @@ import type { RootState } from "./store"
 import { RequestState } from "../types/request"
 import type { Personality } from "../types"
 
-
 // Create an entity adapter
-const personalitiesAdapter = createEntityAdapter({
+export const personalitiesAdapter = createEntityAdapter({
   selectId: (personality: Personality) => personality.id,
   sortComparer: (a, b) => a.distance - b.distance,
 })
@@ -22,14 +21,24 @@ export const personalitiesSlice = createSlice({
     setAllPersonalities: (state, action: PayloadAction<Personality[]>) => {
       personalitiesAdapter.setAll(state, action.payload)
     },
+    addPersonalities: (state, action: PayloadAction<Personality[]>) => {
+      personalitiesAdapter.addMany(state, action.payload)
+    },
     setRequestState: (state, action: PayloadAction<RequestState>) => {
       state.requestState = action.payload
+    },
+    clearAllPersonalities: state => {
+      personalitiesAdapter.removeAll(state)
     },
   },
 })
 
-export const { setAllPersonalities, setRequestState } =
-  personalitiesSlice.actions
+export const {
+  setAllPersonalities,
+  addPersonalities,
+  setRequestState,
+  clearAllPersonalities,
+} = personalitiesSlice.actions
 export const { selectAll: selectAllPersonalities } =
   personalitiesAdapter.getSelectors((state: RootState) => state.personalities)
 

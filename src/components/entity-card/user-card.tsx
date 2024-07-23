@@ -29,6 +29,7 @@ export const UserCard = ({ user, distance }: UserCardProps) => {
           <span>{new Date(card.date).toLocaleDateString("en-GB")}</span>
         </div> */}
         <h2>USER</h2>
+        <h3>distance {distance}</h3>
         <h3>{user.email}</h3>
         <h3>assertiveTurbulent {user.personality.assertiveTurbulent}</h3>
         <h3>
@@ -42,8 +43,8 @@ export const UserCard = ({ user, distance }: UserCardProps) => {
         <p>CONTENT</p>
         <h2>REACTIONS</h2>
         {user.reactedBy.length > 0 &&
-          user.reactedBy.map(reaction => (
-            <p>
+          user.reactedBy.map((reaction, index) => (
+            <p key={index}>
               {reaction.type} by {reaction.user?.email}
             </p>
           ))}

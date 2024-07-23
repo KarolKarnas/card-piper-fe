@@ -29,6 +29,7 @@ export type UserMe = {
   personality: PersonalityStats
   total_reaction: TotalReaction
   latest_reaction: LatestReaction
+  personalityType: string
 }
 
 export enum FormLoginRole {

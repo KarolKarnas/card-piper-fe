@@ -18,7 +18,7 @@ export const Home = () => {
   useFetchUserMe()
   return (
     <div className={styles.home}>
-      <Header />
+      {/* <Header /> */}
       {userMe && user ? (
         <div className={styles.main}>
           <Personalities />

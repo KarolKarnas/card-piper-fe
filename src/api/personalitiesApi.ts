@@ -4,6 +4,7 @@ import { RequestState } from "../types/request"
 
 import type { Personality } from "../types/entities"
 import {
+  addPersonalities,
   setAllPersonalities,
   setRequestState,
 } from "../store/personalitiesSlice"
@@ -25,7 +26,7 @@ const personalitiesApi = api.injectEndpoints({
           entities,
         }
 
-        // console.log("params", params)
+        console.log("params", params)
 
         if (!userPersonality) {
           params.assertiveTurbulent = 0
@@ -56,13 +57,14 @@ const personalitiesApi = api.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         dispatch(setRequestState(RequestState.LOADING))
         try {
-          await queryFulfilled
-          dispatch(setRequestState(RequestState.SUCCESS))
-          // const { data } = await queryFulfilled
-          // if (data) {
-          //   dispatch(setRequestState(RequestState.SUCCESS))
-          //   // dispatch(setAllPersonalities(data))
-          // }
+          // await queryFulfilled
+          // dispatch(setRequestState(RequestState.SUCCESS))
+          const { data } = await queryFulfilled
+          if (data) {
+            dispatch(setRequestState(RequestState.SUCCESS))
+            // dispatch(setAllPersonalities(data))
+            dispatch(addPersonalities(data))
+          }
         } catch (error) {
           dispatch(setRequestState(RequestState.ERROR))
           console.log(error)

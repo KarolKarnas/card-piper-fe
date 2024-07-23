@@ -8,7 +8,7 @@ export type AuthorCardProps = {
 
 export const AuthorCard = ({ author, distance }: AuthorCardProps) => {
   return (
-    <div>
+    <div style={{height: "500px"}}>
       <SectionHeading color="blue">{author.name}</SectionHeading>
       <h1>AUTHOR</h1>
       <h3>distance {distance}</h3>
