@@ -30,7 +30,27 @@ const usersApi = api.injectEndpoints({
       },
       providesTags: (result, error) => [{ type: "Users" }],
     }),
+    updateUserMe: build.mutation<{ message: string }, Partial<UserMe>>({
+      query: user => ({
+        url: `${URL_API_USERS}/me`,
+        method: "PATCH",
+        body: user,
+      }),
+      async onQueryStarted(user, { dispatch, queryFulfilled }) {
+        try {
+          dispatch(setUserMeRequestState(RequestState.LOADING))
+          const { data } = await queryFulfilled
+          if (data) {
+            dispatch(setUserMeRequestState(RequestState.SUCCESS))
+          }
+        } catch (error) {
+          dispatch(setUserMeRequestState(RequestState.ERROR))
+          console.log(error)
+        }
+      },
+      invalidatesTags: [{ type: "Users" }],
+    }),
   }),
 })
 
-export const { useGetUserMeQuery } = usersApi
+export const { useGetUserMeQuery, useUpdateUserMeMutation } = usersApi
