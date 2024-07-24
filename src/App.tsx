@@ -16,8 +16,8 @@ import { useTheme } from "./hooks/use-theme"
 const App = () => {
   const [signIn, setSignIn] = useState(true)
   const user = useAppSelector(selectUserInfo)
-  const userMe = useAppSelector(selectUserMe)
   useFetchUserMe()
+  const userMe = useAppSelector(selectUserMe)
 
   const darkTheme = useTheme()
 

@@ -1,9 +1,12 @@
+@use "../../styles/spacing.scss";
+
 .container {
-  display: flex;
+    display: flex;
   flex-direction: column;
   align-items: center;
   width: 70%;
   position: relative;
+  padding: 0 spacing.$s8;
   .select {
     position: sticky;
     top: 75px;

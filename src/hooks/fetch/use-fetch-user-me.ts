@@ -12,11 +12,12 @@ export const useFetchUserMe = () => {
     refetch()
   }, [dispatch, refetch])
 
-  useEffect(() => {
-    if (data) {
-      dispatch(setUserMe(data))
-    }
-  }, [data, dispatch])
+  // useEffect(() => {
+  //   if (data) {
+  //     // console.log(data)
+  //     dispatch(setUserMe(data))
+  //   }
+  // }, [data, dispatch])
 
   return { refetch }
 }

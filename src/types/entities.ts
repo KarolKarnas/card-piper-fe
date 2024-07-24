@@ -40,7 +40,9 @@ export enum FormLoginRole {
 export type Author = {
   id: number
   name: string
+  bio: string
   books: Book[]
+  reactions: Reaction[]
 }
 
 // BOOK

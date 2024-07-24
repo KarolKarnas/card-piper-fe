@@ -11,6 +11,7 @@ export const useCreateReaction = () => {
   const handleCreateReaction = async (req: CreateReactionRequest) => {
     const { data } = await createReaction(req)
     if (data) {
+      // console.log(data)
       refetchUserMe()
     }
   }

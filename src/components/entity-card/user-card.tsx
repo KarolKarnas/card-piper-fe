@@ -1,6 +1,12 @@
 import styles from "./user-card.module.scss"
 import Button from "../button/button"
-import type { User } from "../../types"
+import { Entity, ReactionType, type User } from "../../types"
+import { useTheme } from "../../hooks/use-theme"
+import clsx from "clsx"
+import { createReactionArgs } from "../../utils/functions"
+import { useCreateReaction } from "../../hooks/use-create-reaction"
+import { useUserMe } from "../../hooks/use-user-me"
+import type { SyntheticEvent } from "react"
 
 export type UserCardProps = {
   user: User
@@ -8,20 +14,40 @@ export type UserCardProps = {
 }
 
 export const UserCard = ({ user, distance }: UserCardProps) => {
-
-  console.log(user)
+  const { handleCreateReaction } = useCreateReaction()
+  const dark = useTheme()
+  const userMe = useUserMe()
+  const isLoading = !userMe
 
   const changeDirectory = (email: string) => {
     console.log(email)
   }
+
+  if (isLoading) {
+    return <div>LOADING</div>
+  }
+
+  const handleClick = (e: SyntheticEvent, type: ReactionType) => {
+    e.stopPropagation()
+    const args = createReactionArgs(userMe.id, Entity.USER, type, user.id)
+    handleCreateReaction(args)
+  }
   return (
     <div
-      className={styles.card}
+      className={clsx(styles.card, {
+        [styles.dark]: dark,
+        [styles.light]: !dark,
+      })}
       onClick={() => {
         changeDirectory(user.email)
       }}
     >
-      <div className={styles["content-container"]}>
+      <div
+        className={clsx(styles["content-container"], {
+          [styles.dark]: dark,
+          [styles.light]: !dark,
+        })}
+      >
         <h2>USER</h2>
         <h3>distance {distance}</h3>
         <h3>{user.email}</h3>
@@ -38,11 +64,15 @@ export const UserCard = ({ user, distance }: UserCardProps) => {
         <h2>REACTIONS</h2>
         {user.reactedBy.length > 0 &&
           user.reactedBy.map((reaction, index) => (
-            <p key={index}>
+            <h3 key={index}>
               {reaction.type} by {reaction.user?.email}
-            </p>
+            </h3>
           ))}
-        <Button text="Read more" color="orange" path={"some-path"} />
+        {Object.values(ReactionType).map(type => (
+          <button key={type} onClick={e => handleClick(e, type)}>
+            {type}
+          </button>
+        ))}
       </div>
     </div>
   )
