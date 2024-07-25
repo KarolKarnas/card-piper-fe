@@ -2,7 +2,7 @@ import { api } from "./apiSlice"
 import type { QuotesRequestParams } from "../types/request"
 import { RequestState } from "../types/request"
 import type { Quote } from "../types/entities"
-import { setAllQuotes, setRequestState } from "../store/quotesSlice"
+import { setAllQuotes, setQuotesRequestState } from "../store/quotesSlice"
 
 const URL_API_QUOTES = "/quotes"
 
@@ -45,14 +45,14 @@ const quotesApi = api.injectEndpoints({
       keepUnusedDataFor: 5,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          dispatch(setRequestState(RequestState.LOADING))
+          dispatch(setQuotesRequestState(RequestState.LOADING))
           const { data } = await queryFulfilled
           if (data) {
-            dispatch(setRequestState(RequestState.SUCCESS))
+            dispatch(setQuotesRequestState(RequestState.SUCCESS))
             dispatch(setAllQuotes(data))
           }
         } catch (error) {
-          dispatch(setRequestState(RequestState.ERROR))
+          dispatch(setQuotesRequestState(RequestState.ERROR))
           console.log(error)
         }
       },

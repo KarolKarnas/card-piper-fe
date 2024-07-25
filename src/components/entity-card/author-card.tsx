@@ -1,21 +1,25 @@
-import React from "react"
 import styles from "./author-card.module.scss"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
 import { createReactionArgs } from "../../utils/functions"
-import { useCreateReaction } from "../../hooks/use-create-reaction"
 import { useUserMe } from "../../hooks/use-user-me"
 import type { SyntheticEvent } from "react"
 import type { Author } from "../../types"
 import { Entity, ReactionType } from "../../types"
+import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
 
 export type AuthorCardProps = {
   author: Author
+  personalityId: number
   distance: number
 }
 
-export const AuthorCard = ({ author, distance }: AuthorCardProps) => {
-  const { handleCreateReaction } = useCreateReaction()
+export const AuthorCard = ({
+  author,
+  personalityId,
+  distance,
+}: AuthorCardProps) => {
+  const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()
   const userMe = useUserMe()
   const dark = useTheme()
 
@@ -28,11 +32,14 @@ export const AuthorCard = ({ author, distance }: AuthorCardProps) => {
   const handleClick = (e: SyntheticEvent, type: ReactionType) => {
     e.stopPropagation()
     const args = createReactionArgs(userMe.id, Entity.AUTHOR, type, author.id)
-    handleCreateReaction(args)
+    handleCreatePersonalityReaction({
+      id: personalityId,
+      createReaction: args,
+    })
   }
 
-  const changeDirectory = (email: string) => {
-    console.log(email)
+  const changeDirectory = (name: string) => {
+    console.log(name)
   }
 
   return (
@@ -60,7 +67,7 @@ export const AuthorCard = ({ author, distance }: AuthorCardProps) => {
         <p>CONTENT</p>
         <h2>REACTIONS</h2>
         {author.reactions.length > 0 &&
-         author.reactions.map((reaction, index) => (
+          author.reactions.map((reaction, index) => (
             <h3 key={index}>
               {reaction.type} by {reaction.user?.email}
             </h3>

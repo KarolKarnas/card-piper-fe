@@ -2,7 +2,12 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 import type { RootState } from "./store"
 import { RequestState } from "../types/request"
-import type { Personality } from "../types"
+import type { Personality, Reaction } from "../types"
+
+export type CreateReactionRequestState = {
+  id: number
+  requestState: RequestState
+}
 
 // Create an entity adapter
 export const personalitiesAdapter = createEntityAdapter({
@@ -12,6 +17,10 @@ export const personalitiesAdapter = createEntityAdapter({
 
 const initialState = personalitiesAdapter.getInitialState({
   requestState: RequestState.IDLE,
+  createReactionRequestState: {
+    id: 0,
+    requestState: RequestState.IDLE,
+  },
 })
 
 export const personalitiesSlice = createSlice({
@@ -24,8 +33,23 @@ export const personalitiesSlice = createSlice({
     addPersonalities: (state, action: PayloadAction<Personality[]>) => {
       personalitiesAdapter.addMany(state, action.payload)
     },
-    setRequestState: (state, action: PayloadAction<RequestState>) => {
+    updatePersonality: (state, action: PayloadAction<Personality>) => {
+      const personality = action.payload
+      console.log("Updating personality:", personality)
+      const { id, ...changes } = personality
+      personalitiesAdapter.updateOne(state, {
+        id,
+        changes,
+      })
+    },
+    setPersonalitiesRequestState: (state, action: PayloadAction<RequestState>) => {
       state.requestState = action.payload
+    },
+    setCreatePersonalityReactionRequestState: (
+      state,
+      action: PayloadAction<CreateReactionRequestState>,
+    ) => {
+      state.createReactionRequestState = action.payload
     },
     clearAllPersonalities: state => {
       personalitiesAdapter.removeAll(state)
@@ -35,9 +59,13 @@ export const personalitiesSlice = createSlice({
 
 export const {
   setAllPersonalities,
+  setCreatePersonalityReactionRequestState,
+
   addPersonalities,
-  setRequestState,
+  setPersonalitiesRequestState,
   clearAllPersonalities,
+  updatePersonality,
+
 } = personalitiesSlice.actions
 export const { selectAll: selectAllPersonalities } =
   personalitiesAdapter.getSelectors((state: RootState) => state.personalities)

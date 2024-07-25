@@ -1,4 +1,4 @@
-import type { Entity, ReactionType } from "./entities"
+import type { Entity, Reaction, ReactionType } from "./entities"
 import type { PersonalityStats } from "./entities"
 
 export enum RequestState {
@@ -14,12 +14,17 @@ export type QuotesRequestParams = {
   userPersonality: PersonalityStats | null
 }
 
-export type PersonalityRequestParams = {
+export type PersonalitiesRequestParams = {
   skip: number
   take: number
   userPersonality: PersonalityStats | null
   entity: Entity
   entities: Entity[]
+}
+
+export type CreatePersonalityReactionRequestParams = {
+  id: number
+  createReaction: CreateReactionRequest
 }
 
 // export type ReactionsRequestParams = {

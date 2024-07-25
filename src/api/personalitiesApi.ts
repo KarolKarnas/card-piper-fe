@@ -1,12 +1,17 @@
 import { api } from "./apiSlice"
-import type { PersonalityRequestParams } from "../types/request"
+import type {
+  CreatePersonalityReactionRequestParams,
+  PersonalitiesRequestParams,
+} from "../types/request"
 import { RequestState } from "../types/request"
 
 import type { Personality } from "../types/entities"
 import {
   addPersonalities,
   setAllPersonalities,
-  setRequestState,
+  setCreatePersonalityReactionRequestState,
+  setPersonalitiesRequestState,
+  updatePersonality,
 } from "../store/personalitiesSlice"
 
 const URL_API_PERSONALITY = "/personality"
@@ -14,7 +19,7 @@ const URL_API_PERSONALITY = "/personality"
 const personalitiesApi = api.injectEndpoints({
   endpoints: build => ({
     //TODO change response type
-    getPersonalities: build.query<Personality[], PersonalityRequestParams>({
+    getPersonalities: build.query<Personality[], PersonalitiesRequestParams>({
       query: args => {
         const { skip, take, userPersonality, entity, entities } = args
 
@@ -53,22 +58,68 @@ const personalitiesApi = api.injectEndpoints({
       },
       keepUnusedDataFor: 5,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        dispatch(setRequestState(RequestState.LOADING))
+        dispatch(setPersonalitiesRequestState(RequestState.LOADING))
         try {
           const { data } = await queryFulfilled
           if (data) {
-            dispatch(setRequestState(RequestState.SUCCESS))
+            dispatch(setPersonalitiesRequestState(RequestState.SUCCESS))
             // dispatch(setAllPersonalities(data))
             dispatch(addPersonalities(data))
           }
         } catch (error) {
-          dispatch(setRequestState(RequestState.ERROR))
+          dispatch(setPersonalitiesRequestState(RequestState.ERROR))
           console.log(error)
         }
       },
       providesTags: (result, error) => [{ type: "Personalities" }],
     }),
+    createPersonalityReaction: build.mutation<
+      Personality,
+      CreatePersonalityReactionRequestParams
+    >({
+      query: ({ id, createReaction }) => ({
+        url: `${URL_API_PERSONALITY}/${id}/reaction`,
+        method: "POST",
+        body: createReaction,
+      }),
+      async onQueryStarted(
+        { id, createReaction },
+        { dispatch, queryFulfilled },
+      ) {
+        dispatch(
+          setCreatePersonalityReactionRequestState({
+            id: id,
+            requestState: RequestState.LOADING,
+          }),
+        )
+        // Optimistic update logic (if any) can go here
+        try {
+          const { data } = await queryFulfilled
+          if (data) {
+            dispatch(
+              setCreatePersonalityReactionRequestState({
+                id: id,
+                requestState: RequestState.SUCCESS,
+              }),
+            )
+            dispatch(updatePersonality(data))
+          }
+        } catch (error) {
+          dispatch(
+            setCreatePersonalityReactionRequestState({
+              id: id,
+              requestState: RequestState.ERROR,
+            }),
+          )
+          console.error("Failed to create reaction: ", error)
+          // Handle errors if needed
+        }
+      },
+    }),
   }),
 })
 
-export const { useGetPersonalitiesQuery } = personalitiesApi
+export const {
+  useGetPersonalitiesQuery,
+  useCreatePersonalityReactionMutation,
+} = personalitiesApi

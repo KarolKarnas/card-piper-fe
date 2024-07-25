@@ -21,13 +21,13 @@ export const quotesSlice = createSlice({
     setAllQuotes: (state, action: PayloadAction<Quote[]>) => {
       quotesAdapter.setAll(state, action.payload)
     },
-    setRequestState: (state, action: PayloadAction<RequestState>) => {
+    setQuotesRequestState: (state, action: PayloadAction<RequestState>) => {
       state.requestState = action.payload
     },
   },
 })
 
-export const { setAllQuotes, setRequestState } = quotesSlice.actions
+export const { setAllQuotes, setQuotesRequestState } = quotesSlice.actions
 export const { selectAll: selectAllQuotes } = quotesAdapter.getSelectors(
   (state: RootState) => state.quotes,
 )

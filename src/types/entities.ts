@@ -101,7 +101,7 @@ export enum Entity {
 }
 
 export type Personality = {
-  id: string
+  id: number
   assertiveTurbulent: number
   extroversionIntroversion: number
   judgingPerceiving: number
