@@ -35,7 +35,6 @@ export const personalitiesSlice = createSlice({
     },
     updatePersonality: (state, action: PayloadAction<Personality>) => {
       const personality = action.payload
-      console.log("Updating personality:", personality)
       const { id, ...changes } = personality
       personalitiesAdapter.updateOne(state, {
         id,

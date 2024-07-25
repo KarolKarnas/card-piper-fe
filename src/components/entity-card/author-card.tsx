@@ -9,14 +9,14 @@ import { Entity, ReactionType } from "../../types"
 import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
 
 export type AuthorCardProps = {
-  author: Author
   personalityId: number
+  author: Author
   distance: number
 }
 
 export const AuthorCard = ({
-  author,
   personalityId,
+  author,
   distance,
 }: AuthorCardProps) => {
   const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()

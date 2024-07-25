@@ -19,12 +19,12 @@ const App = () => {
   useFetchUserMe()
   const userMe = useAppSelector(selectUserMe)
 
-  const darkTheme = useTheme()
+  const dark = useTheme()
 
   return (
     <div className={styles.App}>
       {userMe && user ? (
-        <div className={clsx(darkTheme ? styles.dark : styles.light)}>
+        <div className={clsx(dark ? styles.dark : styles.light)}>
           <Header />
           <Outlet />
         </div>

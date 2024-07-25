@@ -4,20 +4,23 @@ import { Entity, ReactionType, type User } from "../../types"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
 import { createReactionArgs } from "../../utils/functions"
-import { useCreateReaction } from "../../hooks/use-create-reaction"
 import { useUserMe } from "../../hooks/use-user-me"
 import type { SyntheticEvent } from "react"
+import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
 
 export type UserCardProps = {
+  personalityId: number
   user: User
   distance: number
 }
 
-export const UserCard = ({ user, distance }: UserCardProps) => {
-  const { handleCreateReaction } = useCreateReaction()
+export const UserCard = ({ personalityId, user, distance }: UserCardProps) => {
+  const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()
   const dark = useTheme()
   const userMe = useUserMe()
   const isLoading = !userMe
+
+  console.log(user)
 
   const changeDirectory = (email: string) => {
     console.log(email)
@@ -30,7 +33,10 @@ export const UserCard = ({ user, distance }: UserCardProps) => {
   const handleClick = (e: SyntheticEvent, type: ReactionType) => {
     e.stopPropagation()
     const args = createReactionArgs(userMe.id, Entity.USER, type, user.id)
-    handleCreateReaction(args)
+    handleCreatePersonalityReaction({
+      id: personalityId,
+      createReaction: args,
+    })
   }
   return (
     <div

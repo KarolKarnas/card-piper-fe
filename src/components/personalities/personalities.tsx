@@ -15,12 +15,16 @@ import { QuoteCard } from "../entity-card/quote-card"
 import { CharacterCard } from "../entity-card/character-card"
 import { UserCard } from "../entity-card/user-card"
 import { selectUserMe, selectUserMeRequestState } from "../../store/usersSlice"
+import { useTheme } from "../../hooks/use-theme"
+import clsx from "clsx"
 
 export const Personalities = () => {
   const [skip, setSkip] = useState(0)
   const [take, setTake] = useState(10)
   const [entity, setEntity] = useState(Entity.AUTHOR)
   const [entities, setEntities] = useState<Entity[]>(Object.values(Entity))
+
+  const dark = useTheme()
   // const [clear, setClear] = useState(false);
 
   const dispatch = useAppDispatch()
@@ -88,7 +92,12 @@ export const Personalities = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.select}>
+      <div
+        className={clsx(styles.select, {
+          [styles.dark]: dark,
+          [styles.light]: !dark,
+        })}
+      >
         {Object.values(Entity).map(option => (
           <div key={option}>
             <input
@@ -135,6 +144,7 @@ export const Personalities = () => {
             )}
             {personality.user && (
               <UserCard
+                personalityId={personality.id}
                 user={personality.user}
                 distance={personality.distance}
               />
