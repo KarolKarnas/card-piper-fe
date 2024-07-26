@@ -1,26 +1,28 @@
 import styles from "./user-card.module.scss"
-import Button from "../button/button"
-import { Entity, ReactionType, type User } from "../../types"
+import type { Reaction , Entity} from "../../types"
+import {  type User } from "../../types"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
-import { createReactionArgs } from "../../utils/functions"
 import { useUserMe } from "../../hooks/use-user-me"
-import type { SyntheticEvent } from "react"
-import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
+import { CardEntity } from "./card-role/card-entity"
+import ReactionButtons from "../reaction-buttons/reaction-buttons"
 
 export type UserCardProps = {
   personalityId: number
   user: User
   distance: number
+  entity: Entity
 }
 
-export const UserCard = ({ personalityId, user, distance }: UserCardProps) => {
-  const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()
+export const UserCard = ({
+  personalityId,
+  user,
+  entity,
+  distance,
+}: UserCardProps) => {
   const dark = useTheme()
   const userMe = useUserMe()
   const isLoading = !userMe
-
-  console.log(user)
 
   const changeDirectory = (email: string) => {
     console.log(email)
@@ -30,14 +32,13 @@ export const UserCard = ({ personalityId, user, distance }: UserCardProps) => {
     return <div>LOADING</div>
   }
 
-  const handleClick = (e: SyntheticEvent, type: ReactionType) => {
-    e.stopPropagation()
-    const args = createReactionArgs(userMe.id, Entity.USER, type, user.id)
-    handleCreatePersonalityReaction({
-      id: personalityId,
-      createReaction: args,
-    })
+  const renderLatestReaction = (reactions: Reaction[]) => {
+    return reactions.map((reaction, index) => (
+      <p key={index}>{reaction.entity}</p>
+    ))
   }
+
+ 
   return (
     <div
       className={clsx(styles.card, {
@@ -54,7 +55,9 @@ export const UserCard = ({ personalityId, user, distance }: UserCardProps) => {
           [styles.light]: !dark,
         })}
       >
-        <h2>USER</h2>
+        <CardEntity entity={entity} />
+        <h2>{user.email}</h2>
+        {user.reactions && renderLatestReaction(user.reactions)}
         <h3>distance {distance}</h3>
         <h3>{user.email}</h3>
         <h3>assertiveTurbulent {user.personality.assertiveTurbulent}</h3>
@@ -68,17 +71,18 @@ export const UserCard = ({ personalityId, user, distance }: UserCardProps) => {
         <h4>TITLE</h4>
         <p>CONTENT</p>
         <h2>REACTIONS</h2>
-        {user.reactedBy.length > 0 &&
+        {user.reactedBy &&
+          user.reactedBy.length > 0 &&
           user.reactedBy.map((reaction, index) => (
             <h3 key={index}>
               {reaction.type} by {reaction.user?.email}
             </h3>
           ))}
-        {Object.values(ReactionType).map(type => (
-          <button key={type} onClick={e => handleClick(e, type)}>
-            {type}
-          </button>
-        ))}
+        <ReactionButtons
+          entity={entity}
+          personalityId={personalityId}
+          targetId={user.id}
+        />
       </div>
     </div>
   )

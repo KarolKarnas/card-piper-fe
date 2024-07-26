@@ -14,7 +14,7 @@
 
   transition-property: transform, background-color;
   transition-duration: 100ms;
-  background-color: colors.$orange-300;
+  background-color: colors.$orange-100;
 
   // &.light {
   //   color: colors.$grey-950;
@@ -30,7 +30,7 @@
     // transform: scale(1.015);
     transition-property: transform, background-color;
     transition-duration: 200ms;
-    background-color: colors.$orange-500;
+    background-color: colors.$orange-300;
   }
 
   .content-container {
@@ -47,7 +47,7 @@
     }
 
     &.light {
-      background-color: rgba(colors.$white-200, 0.8);
+      background-color: rgba(colors.$white-100, 0.9);
       h3 {
         color: colors.$grey-900;
       }
@@ -58,6 +58,28 @@
         color: colors.$purple-100;
       }
     }
+
+    // .reaction {
+    //   display: flex;
+    //   gap: spacing.$s2;
+    //   button {
+    //     border-radius: 50%;
+    //     background-color: colors.$blue-400;
+    //     // padding: 0.5rem;
+    //     color: colors.$white-100;
+    //     border: none;
+    //     transition: all 0.3s ease-in-out;
+    //     font-size: 16px;
+    //     width: 28px;
+    //     height: 28px;
+    //     line-height: 0;
+
+    //     &:hover {
+    //       cursor: pointer;
+    //       transform: translateY(-0.25rem) scale(1.1);
+    //     }
+    //   }
+    // }
 
     h2 {
       margin: spacing.$s2 0;

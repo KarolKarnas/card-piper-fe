@@ -122,6 +122,7 @@ export const Personalities = () => {
                 personalityId={personality.id}
                 author={personality.author}
                 distance={personality.distance}
+                entity={personality.entity}
               />
             )}
             {personality.book && (
@@ -147,6 +148,7 @@ export const Personalities = () => {
                 personalityId={personality.id}
                 user={personality.user}
                 distance={personality.distance}
+                entity={personality.entity}
               />
             )}
           </div>

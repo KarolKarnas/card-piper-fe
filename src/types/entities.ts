@@ -83,6 +83,7 @@ export type User = {
   email: string
   personality: PersonalityStats
   reactedBy: Reaction[]
+  reactions: Reaction[]
 }
 
 export type UserReacted = {

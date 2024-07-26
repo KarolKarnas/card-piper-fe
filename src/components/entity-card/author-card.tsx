@@ -1,25 +1,24 @@
 import styles from "./author-card.module.scss"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
-import { createReactionArgs } from "../../utils/functions"
 import { useUserMe } from "../../hooks/use-user-me"
-import type { SyntheticEvent } from "react"
-import type { Author } from "../../types"
-import { Entity, ReactionType } from "../../types"
-import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
+import type { Author , Entity} from "../../types"
+import { CardEntity } from "./card-role/card-entity"
+import ReactionButtons from "../reaction-buttons/reaction-buttons"
 
 export type AuthorCardProps = {
   personalityId: number
   author: Author
   distance: number
+  entity: Entity
 }
 
 export const AuthorCard = ({
   personalityId,
   author,
   distance,
+  entity,
 }: AuthorCardProps) => {
-  const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()
   const userMe = useUserMe()
   const dark = useTheme()
 
@@ -29,14 +28,6 @@ export const AuthorCard = ({
     return <div>LOADING</div>
   }
 
-  const handleClick = (e: SyntheticEvent, type: ReactionType) => {
-    e.stopPropagation()
-    const args = createReactionArgs(userMe.id, Entity.AUTHOR, type, author.id)
-    handleCreatePersonalityReaction({
-      id: personalityId,
-      createReaction: args,
-    })
-  }
 
   const changeDirectory = (name: string) => {
     console.log(name)
@@ -58,6 +49,7 @@ export const AuthorCard = ({
           [styles.light]: !dark,
         })}
       >
+        <CardEntity entity={entity} />
         <h2>AUTHOR</h2>
         <h3>distance {distance}</h3>
         <h3>{author.name}</h3>
@@ -72,11 +64,16 @@ export const AuthorCard = ({
               {reaction.type} by {reaction.user?.email}
             </h3>
           ))}
-        {Object.values(ReactionType).map(type => (
+        <ReactionButtons
+          entity={entity}
+          personalityId={personalityId}
+          targetId={author.id}
+        />
+        {/* {Object.values(ReactionType).map(type => (
           <button key={type} onClick={e => handleClick(e, type)}>
             {type}
           </button>
-        ))}
+        ))} */}
       </div>
     </div>
   )

@@ -1,0 +1,7 @@
+@use "../../../styles/colors";
+@use "../../../styles/fonts.scss";
+
+.entity {
+  font-size: fonts.$xs2;
+  font-family: fonts.$s_main;
+}

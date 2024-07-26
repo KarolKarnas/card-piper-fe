@@ -28,18 +28,10 @@
     }
   }
   .feed {
-    padding: 0 spacing.$s8;
+    padding: spacing.$s6;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: spacing.$s6;
   }
-
-  // .card {
-  //   display: flex;
-  //   flex-direction: column;
-  //   height: 500px;
-  //   width: 800px;
-  //   border: 1px solid black;
-  // }
 }
