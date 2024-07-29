@@ -100,7 +100,7 @@
 
     p {
       font-size: fonts.$sm;
-      text-align: center;
+      text-align: left;
       hyphens: auto;
       color: colors.$white-300;
       @include mixins.drop-shadow-md-color(

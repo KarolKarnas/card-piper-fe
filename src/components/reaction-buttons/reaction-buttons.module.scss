@@ -4,29 +4,44 @@
 @use "../../styles/breakpoints.scss";
 @use "../../styles/mixins";
 
-.reaction {
+.reactions {
   display: flex;
-  gap: spacing.$s2;
-  button {
+  gap: 2px;
+  .count {
+    line-height: 0;
+    font-weight: 400;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background-color: colors.$red-400;
+    color: colors.$white-100;
+    margin-left: spacing.$s1;
+  }
+
+  .reaction {
     border-radius: 50%;
     background-color: colors.$blue-400;
     // padding: 0.5rem;
     color: colors.$white-100;
     border: none;
     transition: all 0.3s ease-in-out;
-    font-size: 16px;
+    font-size: 18px;
     width: 28px;
     height: 28px;
     line-height: 0;
 
-    &.hate {
-      background-color: colors.$orange-500;
-    }
     &.love {
-      background-color: colors.$pink-400;
+      background-color: colors.$red-400;
     }
     &.dislike {
       background-color: colors.$navy-500;
+    }
+    &.meh {
+      background-color: colors.$green-600;
+    }
+    &.hate {
+      background-color: colors.$grey-200;
     }
 
     &:hover {

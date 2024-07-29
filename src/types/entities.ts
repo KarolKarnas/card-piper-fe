@@ -122,6 +122,7 @@ export type Personality = {
 export enum ReactionType {
   LOVE = "LOVE",
   LIKE = "LIKE",
+  MEH = "MEH",
   DISLIKE = "DISLIKE",
   HATE = "HATE",
 }

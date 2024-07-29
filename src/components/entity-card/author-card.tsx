@@ -2,7 +2,7 @@ import styles from "./author-card.module.scss"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
 import { useUserMe } from "../../hooks/use-user-me"
-import type { Author , Entity} from "../../types"
+import type { Author, Entity } from "../../types"
 import { CardEntity } from "./card-role/card-entity"
 import ReactionButtons from "../reaction-buttons/reaction-buttons"
 
@@ -28,7 +28,6 @@ export const AuthorCard = ({
     return <div>LOADING</div>
   }
 
-
   const changeDirectory = (name: string) => {
     console.log(name)
   }
@@ -50,13 +49,10 @@ export const AuthorCard = ({
         })}
       >
         <CardEntity entity={entity} />
-        <h2>AUTHOR</h2>
         <h3>distance {distance}</h3>
         <h3>{author.name}</h3>
         <h3 dangerouslySetInnerHTML={{ __html: author.bio }}></h3>
 
-        <h4>TITLE</h4>
-        <p>CONTENT</p>
         <h2>REACTIONS</h2>
         {author.reactions.length > 0 &&
           author.reactions.map((reaction, index) => (
@@ -68,6 +64,7 @@ export const AuthorCard = ({
           entity={entity}
           personalityId={personalityId}
           targetId={author.id}
+          reactedBy={author.reactions}
         />
         {/* {Object.values(ReactionType).map(type => (
           <button key={type} onClick={e => handleClick(e, type)}>
