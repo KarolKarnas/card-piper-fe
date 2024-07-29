@@ -54,21 +54,13 @@ export const UserCard = ({
         <h3>distance {distance}</h3>
 
         {user.reactions && <UserLatestReaction reactions={user.reactions} />}
-
-        <h2>reactions</h2>
-        {user.reactedBy &&
-          user.reactedBy.length > 0 &&
-          user.reactedBy.map((reaction, index) => (
-            <h3 key={index}>
-              {reaction.type} by {reaction.user?.email}
-            </h3>
-          ))}
         <div>
           <ReactionButtons
             entity={entity}
             personalityId={personalityId}
             targetId={user.id}
-            reactedBy={user.reactedBy}
+            reactions={user.reactedBy}
+            personalityName={user.email}
           />
         </div>
       </div>

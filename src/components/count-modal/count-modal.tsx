@@ -1,14 +1,22 @@
 import type { SyntheticEvent } from "react"
 import { useEffect, useRef } from "react"
 import styles from "./count-modal.module.scss"
+import type { Reaction } from "../../types"
+import { ReactionButton } from "../reaction-button/reaction-button"
 
 interface CountModalProps {
   isOpen: boolean
   onClose: (e: SyntheticEvent) => void
-  children: React.ReactNode
+  reactions?: Reaction[]
+  personalityName: string
 }
 
-export const CountModal = ({ isOpen, onClose, children }: CountModalProps) => {
+export const CountModal = ({
+  isOpen,
+  onClose,
+  reactions,
+  personalityName,
+}: CountModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -20,11 +28,7 @@ export const CountModal = ({ isOpen, onClose, children }: CountModalProps) => {
   }, [isOpen])
 
   const handleClickOutside = (e: SyntheticEvent) => {
-    if (e.target === dialogRef.current) {
-      console.log(e.target)
-    } else {
-      onClose(e)
-    }
+    onClose(e)
   }
 
   return (
@@ -34,12 +38,20 @@ export const CountModal = ({ isOpen, onClose, children }: CountModalProps) => {
       onClose={onClose}
       onClick={handleClickOutside}
     >
-      <div className={styles.modalContent}>
-        <button className={styles.close} onClick={onClose}>
-          ×
-        </button>
-        {children}
-      </div>
+      <span className={styles.reactions}>{personalityName} is:</span>
+      <ul>
+        {reactions &&
+          reactions.map((reaction, index) => {
+            return (
+              <li key={index}>
+                {" "}
+                <ReactionButton reaction={reaction} />
+                {` ${reaction.type.toLocaleLowerCase()} by `}
+                {reaction.user?.email}
+              </li>
+            )
+          })}
+      </ul>
     </dialog>
   )
 }

@@ -1,7 +1,7 @@
 import { useState, type SyntheticEvent } from "react"
 import styles from "./reaction-buttons.module.scss"
 import { FaHeart, FaThumbsDown, FaThumbsUp } from "react-icons/fa6"
-import { FaAngry, FaMeh, FaHeartBroken } from "react-icons/fa"
+import { FaMeh, FaHeartBroken } from "react-icons/fa"
 import type { Entity, Reaction } from "../../types"
 import { ReactionType } from "../../types"
 import { useCreatePersonalityReaction } from "../../hooks/use-create-personality-reaction"
@@ -14,7 +14,8 @@ interface ReactionButtonsProps {
   personalityId: number
   targetId: number
   entity: Entity
-  reactedBy: Reaction[]
+  reactions: Reaction[]
+  personalityName: string
 }
 
 export const reactionIcons = {
@@ -29,11 +30,12 @@ const ReactionButtons: React.FC<ReactionButtonsProps> = ({
   personalityId,
   targetId,
   entity,
-  reactedBy,
+  reactions,
+  personalityName,
 }) => {
   const { handleCreatePersonalityReaction } = useCreatePersonalityReaction()
   const userMe = useUserMe()
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const handleClickReaction = (e: SyntheticEvent, type: ReactionType) => {
     e.stopPropagation()
@@ -46,14 +48,14 @@ const ReactionButtons: React.FC<ReactionButtonsProps> = ({
     }
   }
   const handleClickCount = (e: SyntheticEvent) => {
-    e.stopPropagation();
-    setModalOpen(true);
-  };
-  
+    e.stopPropagation()
+    setModalOpen(true)
+  }
+
   const handleCloseModal = (e: SyntheticEvent) => {
-    e.stopPropagation();
-    setModalOpen(false);
-  };
+    e.stopPropagation()
+    setModalOpen(false)
+  }
 
   return (
     <div className={styles.reactions}>
@@ -73,16 +75,14 @@ const ReactionButtons: React.FC<ReactionButtonsProps> = ({
         </button>
       ))}
       <button className={styles.count} onClick={e => handleClickCount(e)}>
-        {reactedBy ? reactedBy.length : 0}
+        {reactions ? reactions.length : 0}
       </button>
-      <CountModal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Reactions</h2>
-        <ul>
-          {reactedBy && reactedBy.map((reaction, index) => (
-            <li key={index}>{reaction.type}</li>
-          ))}
-        </ul>
-      </CountModal>
+      <CountModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        reactions={reactions}
+        personalityName={personalityName}
+      ></CountModal>
     </div>
   )
 }

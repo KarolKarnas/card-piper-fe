@@ -64,13 +64,9 @@ export const AuthorCard = ({
           entity={entity}
           personalityId={personalityId}
           targetId={author.id}
-          reactedBy={author.reactions}
+          reactions={author.reactions}
+          personalityName={author.name}
         />
-        {/* {Object.values(ReactionType).map(type => (
-          <button key={type} onClick={e => handleClick(e, type)}>
-            {type}
-          </button>
-        ))} */}
       </div>
     </div>
   )
