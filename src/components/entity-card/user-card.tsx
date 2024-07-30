@@ -1,61 +1,67 @@
 import styles from "./user-card.module.scss"
-import Button from "../button/button"
-import type { User } from "../../types"
+import type { Entity } from "../../types"
+import { type User } from "../../types"
+import { useTheme } from "../../hooks/use-theme"
+import clsx from "clsx"
+import { useUserMe } from "../../hooks/use-user-me"
+import { CardEntity } from "./card-role/card-entity"
+import ReactionButtons from "../reaction-buttons/reaction-buttons"
+import { UserLatestReaction } from "./user-latest-reaction/user-card-latest-reaction"
 
 export type UserCardProps = {
+  personalityId: number
   user: User
   distance: number
+  entity: Entity
 }
 
-export const UserCard = ({ user, distance }: UserCardProps) => {
-  // const router = useRouter()
-
-  console.log("user ", user)
+export const UserCard = ({
+  personalityId,
+  user,
+  entity,
+  distance,
+}: UserCardProps) => {
+  const dark = useTheme()
+  const userMe = useUserMe()
+  const isLoading = !userMe
 
   const changeDirectory = (email: string) => {
-    // router.push(path)
     console.log(email)
   }
+
+  if (isLoading) {
+    return <div>LOADING</div>
+  }
+
   return (
     <div
-      className={styles.card}
+      className={clsx(styles.card, {
+        [styles.dark]: dark,
+        [styles.light]: !dark,
+      })}
       onClick={() => {
         changeDirectory(user.email)
       }}
     >
-      <div className={styles["content-container"]}>
-        {/* <div className={styles["date-container"]}>
-          <span>Karol Karnas</span>
-          <span>{new Date(card.date).toLocaleDateString("en-GB")}</span>
-        </div> */}
-        <h2>USER</h2>
-        <h3>{user.email}</h3>
-        <h3>assertiveTurbulent {user.personality.assertiveTurbulent}</h3>
-        <h3>
-          extroversionIntroversion {user.personality.extroversionIntroversion}
-        </h3>
-        <h3>judgingPerceiving {user.personality.judgingPerceiving}</h3>
-        <h3>sensingIntuition {user.personality.sensingIntuition}</h3>
-        <h3>thinkingFeeling {user.personality.thinkingFeeling}</h3>
+      <div
+        className={clsx(styles["content-container"], {
+          [styles.dark]: dark,
+          [styles.light]: !dark,
+        })}
+      >
+        <CardEntity entity={entity} />
+        <h2>{user.email}</h2>
+        {/* <h3>distance {distance}</h3> */}
 
-        <h4>TITLE</h4>
-        <p>CONTENT</p>
-        {/* <p>{card.content}</p> */}
-        <Button text="Read more" color="orange" path={"some-path"} />
+        {user.reactions && <UserLatestReaction reactions={user.reactions} email={user.email} />}
+          <ReactionButtons
+            entity={entity}
+            personalityId={personalityId}
+            targetId={user.id}
+            reactions={user.reactedBy}
+            personalityName={user.email}
+          />
       </div>
-      {/* <Image
-        src={card.main_image}
-        width={1920}
-        height={1080}
-        alt={card.title}
-      /> */}
-
-      {/* <div className={styles["content-container"]}>
-
-        <h4>TITLE</h4>
-        <p>CONTENT</p>
-        <Button text="Read more" color="orange" path={'some-path'} />
-      </div> */}
     </div>
   )
 }

@@ -4,11 +4,13 @@ import type { SigninRequestParams, SignupRequestParams } from "../types/request"
 import { RequestState } from "../types/request"
 import { setUserInfoRequestState } from "../store/authSlice"
 
+const URL_API_AUTH = "/auth"
+
 const authApi = api.injectEndpoints({
   endpoints: build => ({
     signup: build.mutation<UserInfo, SignupRequestParams>({
       query: data => ({
-        url: `/auth/signup`,
+        url: `${URL_API_AUTH}/signup`,
         method: "POST",
         body: data,
       }),
@@ -25,7 +27,7 @@ const authApi = api.injectEndpoints({
     }),
     signin: build.mutation<UserInfo, SigninRequestParams>({
       query: data => ({
-        url: `/auth/signin`,
+        url: `${URL_API_AUTH}/signin`,
         method: "POST",
         body: data,
       }),

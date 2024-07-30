@@ -1,0 +1,36 @@
+@use "../../styles/colors";
+@use "../../styles/fonts.scss";
+@use "../../styles/spacing.scss";
+@use "../../styles/breakpoints.scss";
+@use "../../styles/mixins";
+
+.reaction {
+  border-radius: 50%;
+  background-color: colors.$blue-400;
+  // padding: 0.5rem;
+  color: colors.$white-100;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  line-height: 0;
+
+  &.love {
+    background-color: colors.$red-400;
+  }
+  &.dislike {
+    background-color: colors.$navy-500;
+  }
+  &.meh {
+    background-color: colors.$green-600;
+  }
+  &.hate {
+    background-color: colors.$grey-200;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.25rem) scale(1.1);
+  }
+}

@@ -15,22 +15,19 @@ export enum UserRole {
 
 export interface UserInfo {
   access_token: string
+}
+
+export type UserMe = {
+  id: number
   email: string
+  role: UserRole
+  firstName: string | null
+  lastName: string | null
   personality: PersonalityStats
-  role: UserRole | null
-}
-
-export type UserOrder = Omit<UserInfo, "isAdmin">
-
-export interface UserOrderPassword extends Omit<UserInfo, "isAdmin"> {
-  password: string
-}
-
-export interface UserInfoOptions {
-  _id?: string
-  name?: string
-  email?: string
-  isAdmin?: boolean
+  total_reaction: TotalReaction
+  latest_reaction: LatestReaction
+  personalityType: string
+  darkTheme: boolean
 }
 
 export enum FormLoginRole {
@@ -43,7 +40,9 @@ export enum FormLoginRole {
 export type Author = {
   id: number
   name: string
+  bio: string
   books: Book[]
+  reactions: Reaction[]
 }
 
 // BOOK
@@ -53,6 +52,7 @@ export type Book = {
   title: string
   author: Author
   characters: Character[]
+  reactions: Reaction[]
 }
 
 // QUOTE
@@ -67,6 +67,7 @@ export type Quote = {
   popularity: number
   tags: string[]
   distance: number
+  reactions: Reaction[]
 }
 
 // CHARACTER
@@ -75,6 +76,7 @@ export type Character = {
   id: number
   name: string
   books: Book[]
+  reactions: Reaction[]
 }
 
 // USER
@@ -83,8 +85,13 @@ export type User = {
   id: number
   email: string
   personality: PersonalityStats
-  reactedBy: string
-  reactions: string
+  reactedBy: Reaction[]
+  reactions: Reaction[]
+}
+
+export type UserReacted = {
+  id: number
+  email: string
 }
 
 // ENTITY
@@ -98,7 +105,7 @@ export enum Entity {
 }
 
 export type Personality = {
-  id: string
+  id: number
   assertiveTurbulent: number
   extroversionIntroversion: number
   judgingPerceiving: number
@@ -108,7 +115,72 @@ export type Personality = {
   entity: Entity
   book?: Book
   author?: Author
-  quotes?: Quote
+  quote?: Quote
   character?: Character
   user?: User
 }
+
+// Reactions
+
+export enum ReactionType {
+  LOVE = "LOVE",
+  LIKE = "LIKE",
+  MEH = "MEH",
+  DISLIKE = "DISLIKE",
+  HATE = "HATE",
+}
+
+export type Reaction = {
+  id: number
+  entity: Entity
+  type: ReactionType
+  favorite: boolean
+  list: boolean
+  user?: User
+  quote?: Quote
+  book?: Book
+  author?: Author
+  character?: Character
+  reactedUser?: UserReacted
+  userId: number
+  quoteId: number | null
+  bookId: number | null
+  authorId: number | null
+  characterId: number | null
+  reactedUserId: number | null
+}
+
+export type ReactionCreate = {
+  id: number
+  entity: Entity
+  type: ReactionType
+  favorite: boolean
+  list: boolean
+  userId?: number
+  quoteId: number | null
+  bookId: number | null
+  authorId: number | null
+  characterId: number | null
+  reactedUserId: number | null
+}
+
+// export type EntityTotal = {
+//   TOTAL: number
+//   LOVE: number
+//   LIKE: number
+//   DISLIKE: number
+//   HATE: number
+// }
+
+export type EntityTotal = Record<ReactionType | "TOTAL", number>
+// export type ReactionTotal = {
+//   TOTAL: number
+//   AUTHOR: EntityTotal
+//   BOOK: EntityTotal
+//   QUOTE: EntityTotal
+//   CHARACTER: EntityTotal
+//   USER: EntityTotal
+// }
+export type TotalReaction = Record<Entity, EntityTotal> & { TOTAL: number }
+
+export type LatestReaction = Record<Entity, Record<ReactionType, Reaction[]>>

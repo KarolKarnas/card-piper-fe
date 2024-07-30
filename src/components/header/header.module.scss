@@ -1,0 +1,41 @@
+@use "../../styles/colors";
+@use "../../styles/fonts";
+@use "../../styles/spacing";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  height: 40px;
+  top: 0;
+  z-index: 10;
+  padding: 0 spacing.$s8;
+
+
+  &.light {
+    background-color: colors.$white-300;
+    border-bottom: 1px solid colors.$grey-500;
+  }
+  &.dark {
+    background-color: colors.$grey-950;
+    border-bottom: 1px solid colors.$grey-700;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    img {
+      height: 40px;
+    }
+    span {
+      font-size: fonts.$xl2;
+      text-transform: uppercase;
+      font-weight: 400;
+      // font-family: fonts.$alternative_2;
+    }
+  }
+  .switchers {
+    display: flex;
+    gap: spacing.$s2;
+  }
+}

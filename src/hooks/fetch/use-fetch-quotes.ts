@@ -24,7 +24,6 @@ export const useFetchQuotes = (
 
   useEffect(() => {
     if (data) {
-      // console.log(data)
       dispatch(setAllQuotes(data))
     }
   }, [data, dispatch])

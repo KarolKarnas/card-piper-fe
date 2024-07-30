@@ -12,6 +12,7 @@ import {
   selectUserInfo,
   selectUserInfoRequestState,
 } from "../../store/authSlice"
+import { useUserMe } from "../../hooks/use-user-me"
 
 const optionsTake = [5, 10, 20, 30]
 const optionsSkip = [0, 1, 2, 3, 4, 5]
@@ -22,7 +23,7 @@ export const Quotes = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   // Using a query hook automatically fetches data and returns query values
 
-  const user = useAppSelector(selectUserInfo)
+  const user = useUserMe()
   const userRequestState = useAppSelector(selectUserInfoRequestState)
   const quotesRequestState = useAppSelector(selectQuotesRequestState)
   const isLoading =

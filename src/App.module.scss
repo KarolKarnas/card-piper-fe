@@ -1,0 +1,18 @@
+@use "../src/styles/colors";
+
+.App {
+  // width: 100vw;
+  // display: flex;
+  // justify-content: center;
+  // align-items: start;
+  // text-align: center;
+  .light {
+    background-color: colors.$white-100;
+    color: colors.$grey-950;
+  }
+
+  .dark {
+    background-color: colors.$grey-700;
+    color: colors.$white-100;
+  }
+}

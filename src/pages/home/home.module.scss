@@ -1,0 +1,13 @@
+@use "../../styles/spacing";
+
+.home {
+  position: relative;
+
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    // gap: spacing.$s6;
+    position: relative;
+  }
+}
