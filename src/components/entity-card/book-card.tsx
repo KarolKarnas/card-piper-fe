@@ -50,7 +50,7 @@ export const BookCard = ({
       >
         <CardEntity entity={entity} />
         <h2>"{book.title}"</h2>
-        <h3>distance {distance}</h3>
+        {/* <h3>distance {distance}</h3> */}
         <ul>
           Characters in the book:
           {book.characters.map((character, index) => (

@@ -52,7 +52,7 @@ export const CharacterCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{character.name}</h2>
-        <h3>distance {distance}</h3>
+        {/* <h3>distance {distance}</h3> */}
         <ul>Known from:{character.books.map((book, index) => <li key={index}>{book.title}</li>)}</ul>
 
           <ReactionButtons

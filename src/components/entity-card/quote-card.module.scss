@@ -61,7 +61,7 @@
         colors.$shadow-orange-600
       );
       @include breakpoints.md {
-        font-size: fonts.$xl3;
+        font-size: fonts.$xl2;
         font-weight: 300;
         font-style: italic;
       }

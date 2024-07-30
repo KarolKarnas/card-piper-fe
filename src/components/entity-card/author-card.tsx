@@ -50,7 +50,7 @@ export const AuthorCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{author.name}</h2>
-        <h3>distance {distance}</h3>
+        {/* <h3>distance {distance}</h3> */}
         <h3 dangerouslySetInnerHTML={{ __html: author.bio }}></h3>
 
         <ReactionButtons

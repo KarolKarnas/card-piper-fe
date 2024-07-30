@@ -51,7 +51,7 @@ export const UserCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{user.email}</h2>
-        <h3>distance {distance}</h3>
+        {/* <h3>distance {distance}</h3> */}
 
         {user.reactions && <UserLatestReaction reactions={user.reactions} email={user.email} />}
           <ReactionButtons
