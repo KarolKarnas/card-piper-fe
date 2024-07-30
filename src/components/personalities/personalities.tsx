@@ -127,20 +127,26 @@ export const Personalities = () => {
             )}
             {personality.book && (
               <BookCard
+                personalityId={personality.id}
                 book={personality.book}
                 distance={personality.distance}
+                entity={personality.entity}
               />
             )}
             {personality.quote && (
               <QuoteCard
+                personalityId={personality.id}
                 quote={personality.quote}
                 distance={personality.distance}
+                entity={personality.entity}
               />
             )}
             {personality.character && (
               <CharacterCard
+                personalityId={personality.id}
                 character={personality.character}
                 distance={personality.distance}
+                entity={personality.entity}
               />
             )}
             {personality.user && (
@@ -154,7 +160,10 @@ export const Personalities = () => {
           </div>
         ))}
       </div>
-      <div ref={containerRef} style={{ height: "10px" }} />
+      <div
+        ref={containerRef}
+        style={{ height: "10px", backgroundColor: "red" }}
+      />
       {isLoading && <div>Loading more...</div>}
     </div>
   )

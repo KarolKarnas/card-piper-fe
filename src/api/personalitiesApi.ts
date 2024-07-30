@@ -96,6 +96,7 @@ const personalitiesApi = api.injectEndpoints({
         try {
           const { data } = await queryFulfilled
           if (data) {
+            console.log(data)
             dispatch(
               setCreatePersonalityReactionRequestState({
                 id: id,

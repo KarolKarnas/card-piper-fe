@@ -1,33 +1,47 @@
 import { Entity, type Reaction } from "../../../types"
 import { ReactionButton } from "../../reaction-button/reaction-button"
+import styles from './user-card-latest-reaction.module.scss'
+
+const getContentFromReaction = (reaction: Reaction): React.ReactNode => {
+  switch (reaction.entity) {
+    case Entity.CHARACTER:
+      return reaction.character?.name
+    case Entity.USER:
+      return reaction.reactedUser?.email
+    case Entity.AUTHOR:
+      return reaction.author?.name
+    case Entity.BOOK:
+      return reaction.book?.title
+    case Entity.QUOTE:
+      return reaction.quote?.text
+    default:
+      return null
+  }
+}
 
 export type UserLatestReactionProps = {
   reactions: Reaction[]
+  email: string
 }
 
-export const UserLatestReaction = ({ reactions }: UserLatestReactionProps) => {
-  return reactions.map((reaction, index) => {
-    return reaction.entity === Entity.CHARACTER ? (
-      <p key={index}>
-        {reaction.character?.name}
-        <ReactionButton reaction={reaction} />
-      </p>
-    ) : reaction.entity === Entity.USER ? (
-      <p key={index}>
-        {reaction.reactedUser?.email} <ReactionButton reaction={reaction} />
-      </p>
-    ) : reaction.entity === Entity.AUTHOR ? (
-      <p key={index}>
-        {reaction.author?.name} <ReactionButton reaction={reaction} />
-      </p>
-    ) : reaction.entity === Entity.BOOK ? (
-      <p key={index}>
-        {reaction.book?.title} <ReactionButton reaction={reaction} />
-      </p>
-    ) : reaction.entity === Entity.QUOTE ? (
-      <p key={index}>
-        {reaction.quote?.text} <ReactionButton reaction={reaction} />
-      </p>
-    ) : null
-  })
+export const UserLatestReaction = ({
+  reactions,
+  email,
+}: UserLatestReactionProps) => {
+  return (
+    <div className={styles.container}>
+    <h5>{email} latest reactions:</h5>
+      <ul>
+        {reactions.map((reaction, index) => {
+          const content = getContentFromReaction(reaction)
+
+          return content ? (
+            <li key={index}>
+              {content} <ReactionButton reaction={reaction} />
+            </li>
+          ) : null
+        })}
+      </ul>
+    </div>
+  )
 }

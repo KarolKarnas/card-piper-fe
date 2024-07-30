@@ -49,17 +49,10 @@ export const AuthorCard = ({
         })}
       >
         <CardEntity entity={entity} />
+        <h2>{author.name}</h2>
         <h3>distance {distance}</h3>
-        <h3>{author.name}</h3>
         <h3 dangerouslySetInnerHTML={{ __html: author.bio }}></h3>
 
-        <h2>REACTIONS</h2>
-        {author.reactions.length > 0 &&
-          author.reactions.map((reaction, index) => (
-            <h3 key={index}>
-              {reaction.type} by {reaction.user?.email}
-            </h3>
-          ))}
         <ReactionButtons
           entity={entity}
           personalityId={personalityId}

@@ -5,18 +5,27 @@
 @use "../../styles/mixins";
 
 .reactions {
+  margin-top: spacing.$s3;
   display: flex;
+  align-self: flex-end;
   gap: 2px;
   .count {
     line-height: 0;
-    font-weight: 400;
+    font-weight: 600;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
     border: none;
     background-color: colors.$red-400;
     color: colors.$white-100;
-    margin-left: spacing.$s1;
+    margin-left: 2px;
+
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.25rem) scale(1.1);
+    }
   }
 
   .reaction {
@@ -26,9 +35,9 @@
     color: colors.$white-100;
     border: none;
     transition: all 0.3s ease-in-out;
-    font-size: 18px;
-    width: 28px;
-    height: 28px;
+    font-size: 14px;
+    width: 22px;
+    height: 22px;
     line-height: 0;
 
     &.love {

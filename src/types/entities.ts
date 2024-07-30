@@ -52,6 +52,7 @@ export type Book = {
   title: string
   author: Author
   characters: Character[]
+  reactions: Reaction[]
 }
 
 // QUOTE
@@ -66,6 +67,7 @@ export type Quote = {
   popularity: number
   tags: string[]
   distance: number
+  reactions: Reaction[]
 }
 
 // CHARACTER
@@ -74,6 +76,7 @@ export type Character = {
   id: number
   name: string
   books: Book[]
+  reactions: Reaction[]
 }
 
 // USER

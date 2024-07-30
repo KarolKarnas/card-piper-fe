@@ -53,8 +53,7 @@ export const UserCard = ({
         <h2>{user.email}</h2>
         <h3>distance {distance}</h3>
 
-        {user.reactions && <UserLatestReaction reactions={user.reactions} />}
-        <div>
+        {user.reactions && <UserLatestReaction reactions={user.reactions} email={user.email} />}
           <ReactionButtons
             entity={entity}
             personalityId={personalityId}
@@ -62,7 +61,6 @@ export const UserCard = ({
             reactions={user.reactedBy}
             personalityName={user.email}
           />
-        </div>
       </div>
     </div>
   )

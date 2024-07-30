@@ -10,24 +10,13 @@
   align-items: center;
   justify-content: space-between;
   padding: spacing.$s1;
-  // border-radius: 15px;
 
   transition-property: transform, background-color;
   transition-duration: 100ms;
   background-color: colors.$navy-300;
 
-  // &.light {
-  //   color: colors.$grey-950;
-  // }
-
-  // &.dark {
-  //   background-color: colors.$navy-800;
-  //   color: colors.$white-200;
-  // }
-
   &:hover {
     cursor: pointer;
-    // transform: scale(1.015);
     transition-property: transform, background-color;
     transition-duration: 200ms;
     background-color: colors.$navy-500;
@@ -36,12 +25,10 @@
   .content-container {
     border-radius: 20px 20px 20px 20px;
     width: 100%;
-
-    // backdrop-filter: blur(10px);
     padding: spacing.$s2;
-    // color: colors.$grey-600;
-    align-items: center;
-    // backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+
     @include breakpoints.md {
       padding: spacing.$s4;
     }
@@ -62,7 +49,7 @@
     h2 {
       margin: spacing.$s2 0;
       font-size: fonts.$xl;
-      color: colors.$orange-500;
+      color: colors.$navy-500;
       text-align: center;
       @include mixins.drop-shadow-md-color(
         colors.$shadow-orange-700,

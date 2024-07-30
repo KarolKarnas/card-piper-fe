@@ -2,6 +2,9 @@
 @use "../../../styles/fonts.scss";
 
 .entity {
+  align-self: start;
   font-size: fonts.$xs2;
-  font-family: fonts.$s_main;
+  // font-family: fonts.$s_main;
+  font-size: 10px;
+  font-weight: 300;
 }

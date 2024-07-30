@@ -8,7 +8,9 @@ export const useCreatePersonalityReaction = () => {
   const { refetch: refetchUserMe } = useFetchUserMe()
   const dispatch = useAppDispatch()
 
-  const handleCreatePersonalityReaction = async (req: CreatePersonalityReactionRequestParams) => {
+  const handleCreatePersonalityReaction = async (
+    req: CreatePersonalityReactionRequestParams,
+  ) => {
     const { data } = await createPersonalityReaction(req)
     if (data) {
       refetchUserMe()

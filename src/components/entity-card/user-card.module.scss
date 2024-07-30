@@ -10,20 +10,11 @@
   align-items: center;
   justify-content: space-between;
   padding: spacing.$s1;
-  // border-radius: 15px;
 
   transition-property: transform, background-color;
   transition-duration: 100ms;
   background-color: colors.$orange-100;
 
-  // &.light {
-  //   color: colors.$grey-950;
-  // }
-
-  // &.dark {
-  //   background-color: colors.$navy-800;
-  //   color: colors.$white-200;
-  // }
 
   &:hover {
     cursor: pointer;
@@ -36,12 +27,9 @@
   .content-container {
     border-radius: 20px 20px 20px 20px;
     width: 100%;
-
-    // backdrop-filter: blur(10px);
     padding: spacing.$s2;
-    // color: colors.$grey-600;
-    align-items: center;
-    // backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
     @include breakpoints.md {
       padding: spacing.$s4;
     }
@@ -58,28 +46,6 @@
         color: colors.$purple-100;
       }
     }
-
-    // .reaction {
-    //   display: flex;
-    //   gap: spacing.$s2;
-    //   button {
-    //     border-radius: 50%;
-    //     background-color: colors.$blue-400;
-    //     // padding: 0.5rem;
-    //     color: colors.$white-100;
-    //     border: none;
-    //     transition: all 0.3s ease-in-out;
-    //     font-size: 16px;
-    //     width: 28px;
-    //     height: 28px;
-    //     line-height: 0;
-
-    //     &:hover {
-    //       cursor: pointer;
-    //       transform: translateY(-0.25rem) scale(1.1);
-    //     }
-    //   }
-    // }
 
     h2 {
       margin: spacing.$s2 0;
