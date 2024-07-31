@@ -15,7 +15,7 @@ export const Sidebar = () => {
         [styles.light]: !dark,
       })}
     >
-      <SidebarUser />
+      {/* <SidebarUser /> */}
       <SidebarReactions />
     </div>
   )

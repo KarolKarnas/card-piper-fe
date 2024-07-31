@@ -1,14 +1,17 @@
-import { useAppSelector } from "../../store/hooks";
-import { selectUserMe } from "../../store/usersSlice";
-import styles from "./sidebar-reactions.module.scss";
+import { useAppSelector } from "../../store/hooks"
+import { selectUserMe } from "../../store/usersSlice"
+import { ReactionMainAccordion } from "../reaction-main-accordion/reaction-main-accordion"
+import styles from "./sidebar-reactions.module.scss"
 
 export const SidebarReactions = () => {
-  const userMe = useAppSelector(selectUserMe);
+  // const userMe = useAppSelector(selectUserMe)
+
   return (
     <div>
-      <h1>LIKES</h1>
+      {/* <h1>LIKES</h1> */}
+      <ReactionMainAccordion />
 
-      <h2>TOTALS</h2>
+      {/* <h2>TOTALS</h2>
 
       <h3>AUTHORS {userMe?.total_reaction.AUTHOR.TOTAL}</h3>
       <ul>
@@ -52,7 +55,7 @@ export const SidebarReactions = () => {
         </li>
       </ul>
 
-      <h3>USERS</h3>
+      <h3>USERS</h3> */}
     </div>
-  );
-};
+  )
+}

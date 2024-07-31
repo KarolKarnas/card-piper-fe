@@ -37,7 +37,7 @@ export const UserLatestReaction = ({
 
           return content ? (
             <li key={index}>
-              {content} <ReactionButton reaction={reaction} />
+              {content} <ReactionButton reactionType={reaction.type} />
             </li>
           ) : null
         })}
