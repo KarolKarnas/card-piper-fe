@@ -185,3 +185,5 @@ export type EntityTotal = Record<ReactionType | "TOTAL", number>
 export type TotalReaction = Record<Entity, EntityTotal>
 
 export type LatestReaction = Record<Entity, Record<ReactionType, Reaction[]>>
+
+export type LatestReactionByReactionType = Record<ReactionType, Reaction[]>

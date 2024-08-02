@@ -4,9 +4,12 @@ import styles from "./reaction-main-accordion.module.scss"
 import { FaChevronDown } from "react-icons/fa"
 import { useAppSelector } from "../../store/hooks"
 import { selectUserMe } from "../../store/usersSlice"
-import type { LatestReaction} from "../../types";
-import { ReactionType, type EntityTotal } from "../../types"
+import type { LatestReaction } from "../../types"
+import { Entity, ReactionType, type EntityTotal } from "../../types"
 import { ReactionButton } from "../reaction-button/reaction-button"
+import { ReactionSubAccordion } from "../reaction-sub-accordion/reaction-sub-accordion"
+import clsx from "clsx"
+import { useTheme } from "../../hooks/use-theme"
 
 const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -14,7 +17,7 @@ const AccordionTrigger = React.forwardRef<
 >(({ children, className, ...props }, forwardedRef) => (
   <Accordion.Header className={styles.AccordionHeader}>
     <Accordion.Trigger
-      className={styles.AccordionTrigger}
+      className={clsx(styles.AccordionTrigger, className)}
       {...props}
       ref={forwardedRef}
     >
@@ -31,7 +34,7 @@ const AccordionContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Accordion.Content>
 >(({ children, className, ...props }, forwardedRef) => (
   <Accordion.Content
-    className={styles.AccordionContent}
+    className={clsx(styles.AccordionContent, className)}
     {...props}
     ref={forwardedRef}
   >
@@ -43,13 +46,22 @@ AccordionContent.displayName = "AccordionContent"
 
 export const ReactionMainAccordion = () => {
   const userMe = useAppSelector(selectUserMe)
+  const dark = useTheme()
+
   const isLoading = !userMe
 
   const renderTitle = (name: string, total: EntityTotal) => (
-    <span className={styles.title}>
-      <span className={styles.name}>{name} </span>
+    <span
+      className={clsx(styles.title, {
+        [styles.dark]: dark,
+        [styles.light]: !dark,
+      })}
+    >
+      <span className={styles.name}>
+        {name} <span className={styles.total}>{total.TOTAL}</span>
+      </span>
       <span className={styles.icons}>
-        Total {total.TOTAL} <ReactionButton reactionType={ReactionType.LOVE} />
+        <ReactionButton reactionType={ReactionType.LOVE} />
         {total.LOVE} <ReactionButton reactionType={ReactionType.LIKE} />{" "}
         {total.LIKE} <ReactionButton reactionType={ReactionType.MEH} />{" "}
         {total.MEH} <ReactionButton reactionType={ReactionType.DISLIKE} />{" "}
@@ -64,33 +76,44 @@ export const ReactionMainAccordion = () => {
   }
 
   const reactionTotals = Object.entries(userMe.total_reaction)
-  // const latestReactions = Object.entries(userMe.latest_reaction)
-  console.log(userMe.latest_reaction)
-  // console.log(latestReactions)
 
   return (
     <div className={styles.container}>
       <Accordion.Root
-        className={styles.AccordionRoot}
+        className={clsx(styles.AccordionRoot, {
+          [styles.dark]: dark,
+          [styles.light]: !dark,
+        })}
         type="multiple"
         defaultValue={["book"]}
       >
         {reactionTotals.map((entity, index) => {
           const name = entity[0] as keyof LatestReaction
           const total = entity[1]
-
-          console.log(name, userMe.latest_reaction[name])
+          const entityReactions = userMe.latest_reaction[name]
 
           return (
             <Accordion.Item
               key={`${name}-${index}`}
-              className={styles.AccordionItem}
+              className={clsx(styles.AccordionItem, {
+                [styles.dark]: dark,
+                [styles.light]: !dark,
+              })}
               value={`${name}`}
             >
-              <AccordionTrigger>{renderTitle(name, total)}</AccordionTrigger>
+              <AccordionTrigger
+                className={clsx({
+                  [styles.author]: name === Entity.AUTHOR,
+                  [styles.book]: name === Entity.BOOK,
+                  [styles.quote]: name === Entity.QUOTE,
+                  [styles.character]: name === Entity.CHARACTER,
+                  [styles.user]: name === Entity.USER,
+                })}
+              >
+                {renderTitle(name, total)}
+              </AccordionTrigger>
               <AccordionContent>
-                Yes. It's unstyled by default, giving you freedom over the look
-                and feel.
+                <ReactionSubAccordion entityReactions={entityReactions} />
               </AccordionContent>
             </Accordion.Item>
           )

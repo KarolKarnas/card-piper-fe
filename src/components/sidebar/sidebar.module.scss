@@ -8,6 +8,8 @@
   top: 40px;
   // padding: 0 spacing.$s8;
   height: calc(100vh - 40px);
+  // overflow-y: scroll;
+  // direction: rtl;
   &.light {
     background-color: colors.$white-200;
     border-left: 1px solid colors.$grey-200;
