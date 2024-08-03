@@ -105,17 +105,17 @@
         width: 24px;
         height: 24px;
         font-size: 12px;
-        border: none;
+        // border: none;
         background-color: colors.$red-400;
         color: colors.$white-100;
         margin-left: 2px;
 
-        transition: all 0.3s ease-in-out;
+        // transition: all 0.3s ease-in-out;
 
-        &:hover {
-          cursor: pointer;
-          transform: translateY(-0.25rem) scale(1.1);
-        }
+        // &:hover {
+        //   cursor: pointer;
+        //   transform: translateY(-0.25rem) scale(1.1);
+        // }
       }
     }
   }

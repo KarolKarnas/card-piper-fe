@@ -1,5 +1,5 @@
 import { Entity, type Reaction } from "../../../types"
-import { ReactionButton } from "../../reaction-button/reaction-button"
+import { ReactionIcon } from "../../reaction-icon/reaction-icon"
 import styles from "./user-card-latest-reaction.module.scss"
 
 const getContentFromReaction = (reaction: Reaction): React.ReactNode => {
@@ -37,7 +37,7 @@ export const UserLatestReaction = ({
 
           return content ? (
             <li key={index}>
-              {content} <ReactionButton reactionType={reaction.type} />
+              {content} <ReactionIcon reactionType={reaction.type} />
             </li>
           ) : null
         })}

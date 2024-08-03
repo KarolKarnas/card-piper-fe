@@ -2,7 +2,7 @@ import type { SyntheticEvent } from "react"
 import { useEffect, useRef } from "react"
 import styles from "./count-modal.module.scss"
 import type { Reaction } from "../../types"
-import { ReactionButton } from "../reaction-button/reaction-button"
+import { ReactionIcon } from "../reaction-icon/reaction-icon"
 
 interface CountModalProps {
   isOpen: boolean
@@ -45,7 +45,7 @@ export const CountModal = ({
             return (
               <li key={index}>
                 {" "}
-                <ReactionButton reaction={reaction} />
+                <ReactionIcon reactionType={reaction.type} />
                 {` ${reaction.type.toLocaleLowerCase()} by `}
                 {reaction.user?.email}
               </li>

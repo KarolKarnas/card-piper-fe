@@ -1,3 +1,5 @@
+@use "./styles/colors";
+
 *,
 *::before,
 *::after {
@@ -30,4 +32,21 @@ body {
 code {
   font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+::-webkit-scrollbar {
+  display: inherit;
+  width: 5px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: colors.$grey-200;
+  &:hover {
+    background-color: colors.$grey-100;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background-color: colors.$grey-600;
 }

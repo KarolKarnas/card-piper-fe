@@ -6,10 +6,10 @@ import { useAppSelector } from "../../store/hooks"
 import { selectUserMe } from "../../store/usersSlice"
 import type { LatestReaction } from "../../types"
 import { Entity, ReactionType, type EntityTotal } from "../../types"
-import { ReactionButton } from "../reaction-button/reaction-button"
 import { ReactionSubAccordion } from "../reaction-sub-accordion/reaction-sub-accordion"
 import clsx from "clsx"
 import { useTheme } from "../../hooks/use-theme"
+import { ReactionIcon } from "../reaction-icon/reaction-icon"
 
 const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -61,11 +61,11 @@ export const ReactionMainAccordion = () => {
         {name} <span className={styles.total}>{total.TOTAL}</span>
       </span>
       <span className={styles.icons}>
-        <ReactionButton reactionType={ReactionType.LOVE} />
-        {total.LOVE} <ReactionButton reactionType={ReactionType.LIKE} />{" "}
-        {total.LIKE} <ReactionButton reactionType={ReactionType.MEH} />{" "}
-        {total.MEH} <ReactionButton reactionType={ReactionType.DISLIKE} />{" "}
-        {total.DISLIKE} <ReactionButton reactionType={ReactionType.HATE} />{" "}
+        <ReactionIcon reactionType={ReactionType.LOVE} />
+        {total.LOVE} <ReactionIcon reactionType={ReactionType.LIKE} />{" "}
+        {total.LIKE} <ReactionIcon reactionType={ReactionType.MEH} />{" "}
+        {total.MEH} <ReactionIcon reactionType={ReactionType.DISLIKE} />{" "}
+        {total.DISLIKE} <ReactionIcon reactionType={ReactionType.HATE} />{" "}
         {total.HATE}{" "}
       </span>
     </span>
