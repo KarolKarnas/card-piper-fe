@@ -113,7 +113,10 @@ export const ReactionMainAccordion = () => {
                 {renderTitle(name, total)}
               </AccordionTrigger>
               <AccordionContent>
-                <ReactionSubAccordion entityReactions={entityReactions} />
+                <ReactionSubAccordion
+                  entityReactions={entityReactions}
+                  titleEntity={name}
+                />
               </AccordionContent>
             </Accordion.Item>
           )
