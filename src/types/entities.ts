@@ -26,6 +26,7 @@ export type UserMe = {
   personality: PersonalityStats
   total_reaction: TotalReaction
   latest_reaction: LatestReaction
+  total_reaction_num: number
   personalityType: string
   darkTheme: boolean
 }
@@ -181,6 +182,8 @@ export type EntityTotal = Record<ReactionType | "TOTAL", number>
 //   CHARACTER: EntityTotal
 //   USER: EntityTotal
 // }
-export type TotalReaction = Record<Entity, EntityTotal> & { TOTAL: number }
+export type TotalReaction = Record<Entity, EntityTotal>
 
 export type LatestReaction = Record<Entity, Record<ReactionType, Reaction[]>>
+
+export type LatestReactionByReactionType = Record<ReactionType, Reaction[]>

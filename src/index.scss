@@ -1,3 +1,5 @@
+@use "./styles/colors";
+
 *,
 *::before,
 *::after {
@@ -8,6 +10,8 @@
 
 body {
   font-family: "Montserrat", "Roboto", "Open Sans", "Arial", sans-serif;
+  // min-width: 100vw;
+  // min-height: 100vh;
 }
 
 // h1,
@@ -30,4 +34,20 @@ body {
 code {
   font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+::-webkit-scrollbar {
+  display: inherit;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: colors.$grey-200;
+  &:hover {
+    background-color: colors.$grey-100;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background-color: colors.$grey-600;
 }

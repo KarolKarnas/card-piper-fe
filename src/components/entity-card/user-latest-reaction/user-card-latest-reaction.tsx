@@ -1,6 +1,6 @@
 import { Entity, type Reaction } from "../../../types"
-import { ReactionButton } from "../../reaction-button/reaction-button"
-import styles from './user-card-latest-reaction.module.scss'
+import { ReactionIcon } from "../../reaction-icon/reaction-icon"
+import styles from "./user-card-latest-reaction.module.scss"
 
 const getContentFromReaction = (reaction: Reaction): React.ReactNode => {
   switch (reaction.entity) {
@@ -21,7 +21,7 @@ const getContentFromReaction = (reaction: Reaction): React.ReactNode => {
 
 export type UserLatestReactionProps = {
   reactions: Reaction[]
-  email: string
+  email?: string
 }
 
 export const UserLatestReaction = ({
@@ -30,14 +30,14 @@ export const UserLatestReaction = ({
 }: UserLatestReactionProps) => {
   return (
     <div className={styles.container}>
-    <h5>{email} latest reactions:</h5>
+      {email && <h5>{email} latest reactions:</h5>}
       <ul>
         {reactions.map((reaction, index) => {
           const content = getContentFromReaction(reaction)
 
           return content ? (
             <li key={index}>
-              {content} <ReactionButton reaction={reaction} />
+              {content} <ReactionIcon reactionType={reaction.type} />
             </li>
           ) : null
         })}
