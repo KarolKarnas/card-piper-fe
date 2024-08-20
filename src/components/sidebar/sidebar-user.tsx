@@ -11,7 +11,8 @@ export const SidebarUser = () => {
   return (
     <div className={styles["sidebar-user"]}>
       {/* <h1>USER DETAILS</h1> */}
-      <h2>Hamster {userMe?.email} is {userMe?.personalityType}</h2>
+      <h2>{userMe?.email}</h2>
+      <h3>You are {userMe?.personalityType}</h3>
       {/* <h2>{userMe?.role}</h2> */}
       {/* <h3>assertiveTurbulent {userMe?.personality.assertiveTurbulent}</h3>
       <h3>

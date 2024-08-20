@@ -10,6 +10,8 @@
 
 body {
   font-family: "Montserrat", "Roboto", "Open Sans", "Arial", sans-serif;
+  // min-width: 100vw;
+  // min-height: 100vh;
 }
 
 // h1,
@@ -37,7 +39,6 @@ code {
 ::-webkit-scrollbar {
   display: inherit;
   width: 5px;
-
 }
 
 ::-webkit-scrollbar-thumb {

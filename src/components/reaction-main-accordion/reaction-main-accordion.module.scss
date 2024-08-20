@@ -27,6 +27,7 @@
 
 .AccordionItem {
   overflow: hidden;
+  margin-top: 1px;
   // border-bottom: 1px solid colors.$grey-600;
   &.light {
     background-color: colors.$white-200;
@@ -34,7 +35,6 @@
   &.dark {
     background-color: colors.$grey-800;
   }
-  margin-top: 1px;
 
   // &:first-child {
   //   margin-top: 0;
