@@ -13,7 +13,7 @@ export const AuthenticationScreen = () => {
         <Logo />
         <ul>
           <li>
-            <strong>Card Hamster</strong> is place where you can track your
+            <strong>Card Piper</strong> is place where you can track your
             relation with the whole world of culture
           </li>
           <li>
