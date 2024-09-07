@@ -22,10 +22,9 @@ const reactionsApi = api.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         dispatch(setCreateReactionRequestState(RequestState.LOADING))
         try {
-          console.log("Reacted successfully")
+          await queryFulfilled
           dispatch(setCreateReactionRequestState(RequestState.SUCCESS))
         } catch (error) {
-          console.log(error)
           dispatch(setCreateReactionRequestState(RequestState.ERROR))
         }
       },

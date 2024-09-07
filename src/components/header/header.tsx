@@ -7,9 +7,16 @@ import { useAppSelector } from "../../store/hooks"
 import { selectUserMe } from "../../store/usersSlice"
 import { Logo } from "../logo/logo"
 
+export const MINIMUM_REACTION_NUM = 3
+
 export const Header = () => {
   const dark = useTheme()
   const userMe = useAppSelector(selectUserMe)
+
+  if (!userMe) {
+    return <div>Loading...</div>
+  }
+  const totalReactions = userMe.total_reaction_num
 
   return (
     <div
@@ -21,8 +28,11 @@ export const Header = () => {
       <Logo />
 
       <p>
-        Hello <strong>{userMe?.email}</strong>, you are{" "}
-        <strong>{userMe?.personalityType}</strong>!
+        Hello <strong>{userMe.email}</strong>
+        {totalReactions < MINIMUM_REACTION_NUM
+          ? `, you need to react to ${MINIMUM_REACTION_NUM - totalReactions} more`
+          : `, you are `}
+        {totalReactions >= MINIMUM_REACTION_NUM && <strong>{userMe.personalityType}</strong>}!
       </p>
       <div className={styles.switchers}>
         <ThemeSwitcher />

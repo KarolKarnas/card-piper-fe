@@ -3,6 +3,9 @@ import { api } from "./apiSlice"
 import type { SigninRequestParams, SignupRequestParams } from "../types/request"
 import { RequestState } from "../types/request"
 import { setUserInfoRequestState } from "../store/authSlice"
+import { toast } from "react-toastify"
+import { getErrorMessage } from "../utils/get-error-message"
+import type { ApiError } from "../types/errors"
 
 const URL_API_AUTH = "/auth"
 
@@ -17,11 +20,13 @@ const authApi = api.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         dispatch(setUserInfoRequestState(RequestState.LOADING))
         try {
-          console.log("Signin successfully")
+          await queryFulfilled
           dispatch(setUserInfoRequestState(RequestState.SUCCESS))
+          toast.success("Signup successfully, welcome")
+          toast.info("React to at least 50 cards, and we'll let you know your personality")
         } catch (error) {
-          console.log(error)
           dispatch(setUserInfoRequestState(RequestState.ERROR))
+          toast.error(getErrorMessage(error as ApiError))
         }
       },
     }),
@@ -34,11 +39,12 @@ const authApi = api.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         dispatch(setUserInfoRequestState(RequestState.LOADING))
         try {
-          console.log("Signin successfully")
+          await queryFulfilled
           dispatch(setUserInfoRequestState(RequestState.SUCCESS))
+          toast.success("Signin successfully")
         } catch (error) {
-          console.log(error)
           dispatch(setUserInfoRequestState(RequestState.ERROR))
+          toast.error(getErrorMessage(error as ApiError))
         }
       },
     }),
