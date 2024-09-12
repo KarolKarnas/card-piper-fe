@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom"
 import styles from "./App.module.scss"
-import logo from "./logo.svg"
 import { Header } from "./components/header/header"
 import { useAppSelector } from "./store/hooks"
 import { selectUserInfo } from "./store/authSlice"
@@ -33,7 +32,7 @@ const App = () => {
         pauseOnHover
         theme={userMe ? (dark ? "dark" : "light") : "dark"}
       />
-      {userMe && user ? (
+      {user ? (
         <div className={clsx(dark ? styles.dark : styles.light)}>
           <Header />
           <Outlet />
