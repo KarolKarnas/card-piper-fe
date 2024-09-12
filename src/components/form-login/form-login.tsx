@@ -88,7 +88,7 @@ const FormLogin = ({ role }: FormLoginProps) => {
       </Form.Field>
 
       <Form.Submit asChild>
-        <ButtonSubmit color="orange" text="Submit" type="submit" />
+        <ButtonSubmit color="blue" text="Submit" type="submit" />
       </Form.Submit>
       {/* <div
 				className='flex h-8 items-end space-x-1'

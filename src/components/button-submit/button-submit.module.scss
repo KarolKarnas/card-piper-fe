@@ -6,11 +6,12 @@
 
 .button {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 8px;
   gap: 1rem;
   border: 1px solid;
   height: 40px;
   font-size: fonts.$xs;
+  font-weight: 600;
   text-transform: uppercase;
   transition-duration: 300ms;
   &:hover {
@@ -28,20 +29,20 @@
     colors.$shadow-white-600
   );
   &:hover {
-    background-color: rgba(colors.$orange-500, $alpha: 0.75);
+    background-color: rgba(colors.$orange-600, $alpha: 0.75);
   }
 }
 
 .blue {
-  background-color: rgba(colors.$blue-500, $alpha: 0.5);
-  border-color: colors.$blue-500;
+  background-color: rgba(colors.$navy-500, $alpha: 0.5);
+  border-color: colors.$navy-600;
   color: colors.$white-300;
 
-  @include mixins.drop-shadow-md-color(
-    colors.$shadow-white-700,
-    colors.$shadow-white-600
-  );
+  // @include mixins.drop-shadow-md-color(
+  //   colors.$shadow-white-700,
+  //   colors.$shadow-white-600
+  // );
   &:hover {
-    background-color: rgba(colors.$blue-500, $alpha: 0.75);
+    background-color: rgba(colors.$navy-500, $alpha: 0.75);
   }
 }
