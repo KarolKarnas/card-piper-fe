@@ -26,7 +26,7 @@ export const UserCard = ({
   const isLoading = !userMe
 
   const changeDirectory = (email: string) => {
-    console.log(email)
+    // console.log(email)
   }
 
   if (isLoading) {

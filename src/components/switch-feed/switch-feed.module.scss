@@ -1,0 +1,98 @@
+@use "../../styles/colors";
+@use "../../styles/fonts";
+@use "../../styles/mixins";
+@use "../../styles/spacing";
+@use "../../styles/breakpoints";
+
+.switch {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+
+  &__label {
+    // width: 100%;
+    // text-align: center;
+    // padding-right: spacing.$s2;
+    font-size: fonts.$xs;
+    color: colors.$white-100;
+    @include mixins.drop-shadow-md-color(
+      colors.$shadow-black-700,
+      colors.$shadow-black-600
+    );
+
+    &--author {
+      color: colors.$navy-500
+    }
+
+    &--user {
+      color: colors.$orange-500;
+    }
+
+    &--book {
+      color: colors.$yellow-500;
+    }
+
+    &--quote {
+      color: colors.$blue-500;
+    }
+
+    &--character {
+      color: colors.$green-500;
+    }
+  }
+
+  &__root {
+    all: unset;
+    width: 42px;
+    height: 25px;
+    background-color: colors.$grey-500;
+    border-radius: 9999px;
+    position: relative;
+    box-shadow: 0 2px 10px colors.$shadow-black-600;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &--author {
+      &[data-state="checked"] {
+        background-color: colors.$navy-500;
+      }
+    }
+    &--user {
+      &[data-state="checked"] {
+        background-color: colors.$orange-500;
+      }
+    }
+    &--book {
+      &[data-state="checked"] {
+        background-color: colors.$yellow-500;
+      }
+    }
+    &--quote {
+      &[data-state="checked"] {
+        background-color: colors.$blue-500;
+      }
+    }
+    &--character {
+      &[data-state="checked"] {
+        background-color: colors.$green-500;
+      }
+    }
+  }
+
+  &__thumb {
+    display: block;
+    width: 21px;
+    height: 21px;
+    background-color: colors.$white-100;
+    border-radius: 50%;
+    box-shadow: 0 2px 2px colors.$shadow-black-600;
+    transition: transform 0.2s ease-in-out;
+    transform: translateX(2px);
+
+    &[data-state="checked"] {
+      transform: translateX(19px);
+    }
+  }
+}

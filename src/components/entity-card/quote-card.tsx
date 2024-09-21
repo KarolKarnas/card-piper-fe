@@ -29,7 +29,7 @@ export const QuoteCard = ({
   }
 
   const changeDirectory = (email: string) => {
-    console.log(email)
+    // console.log(email)
   }
 
   return (

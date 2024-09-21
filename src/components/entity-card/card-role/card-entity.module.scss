@@ -1,10 +1,35 @@
 @use "../../../styles/colors";
-@use "../../../styles/fonts.scss";
+@use "../../../styles/fonts";
+@use "../../../styles/mixins";
+@use "../../../styles/spacing";
+@use "../../../styles/breakpoints";
 
 .entity {
   align-self: start;
   font-size: fonts.$xs2;
-  // font-family: fonts.$s_main;
-  font-size: 10px;
   font-weight: 300;
+  @include mixins.drop-shadow-md-color(
+    colors.$shadow-black-700,
+    colors.$shadow-black-600
+  );
+
+  &--author {
+    color: colors.$navy-500
+  }
+
+  &--user {
+    color: colors.$orange-500;
+  }
+
+  &--book {
+    color: colors.$yellow-500;
+  }
+
+  &--quote {
+    color: colors.$blue-500;
+  }
+
+  &--character {
+    color: colors.$green-500;
+  }
 }

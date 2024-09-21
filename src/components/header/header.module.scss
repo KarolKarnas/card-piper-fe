@@ -1,6 +1,9 @@
 @use "../../styles/colors";
 @use "../../styles/fonts";
+@use "../../styles/mixins";
 @use "../../styles/spacing";
+@use "../../styles/breakpoints";
+
 
 .header {
   display: flex;
@@ -12,10 +15,20 @@
   z-index: 10;
   padding: 0 spacing.$s3;
 
+  &__info {
+    display: none;
+    @include breakpoints.lg {
+      display: inherit;
+    }
+    strong {
+      margin-left: spacing.$s1;
+    }
+  }
+
 
   &.light {
     background-color: colors.$white-300;
-    border-bottom: 1px solid colors.$grey-500;
+    border-bottom: 1px solid colors.$white-500;
   }
   &.dark {
     background-color: colors.$grey-950;

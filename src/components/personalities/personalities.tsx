@@ -17,28 +17,28 @@ import { UserCard } from "../entity-card/user-card"
 import { selectUserMe, selectUserMeRequestState } from "../../store/usersSlice"
 import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
+import { SwitchFeed } from "../switch-feed/switch-feed"
 
 export const Personalities = () => {
   const [skip, setSkip] = useState(0)
   const [take, setTake] = useState(10)
   const [entity, setEntity] = useState(Entity.AUTHOR)
-  const [entities, setEntities] = useState<Entity[]>(Object.values(Entity))
+  const [entities, setEntities] = useState<Entity[]>(Object.values(Entity).filter(value => value !== Entity.USER))
 
   const dark = useTheme()
   // const [clear, setClear] = useState(false);
 
   const dispatch = useAppDispatch()
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (entity: Entity, checked: boolean) => {
     dispatch(clearAllPersonalities())
-    const value = e.target.value as Entity
+
     setEntities(prev =>
-      e.target.checked
-        ? [...prev, value]
-        : prev.filter(entity => entity !== value),
+      checked ? [...prev, entity] : prev.filter(e => e !== entity),
     )
+
     setSkip(0)
-    // setClear(true);
+    return
   }
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -99,16 +99,12 @@ export const Personalities = () => {
         })}
       >
         {Object.values(Entity).map(option => (
-          <div key={option}>
-            <input
-              type="checkbox"
-              id={option}
-              value={option}
-              checked={entities.includes(option)}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor={option}>{option}</label>
-          </div>
+          <SwitchFeed
+            key={option}
+            option={option}
+            checked={entities.includes(option)}
+            onChange={handleCheckboxChange}
+          />
         ))}
       </div>
       <div className={styles.feed}>

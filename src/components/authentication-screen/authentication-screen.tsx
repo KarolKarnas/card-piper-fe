@@ -53,7 +53,30 @@ export const AuthenticationScreen = () => {
               {signIn ? "I wanna signup" : "I wanna signin"}
             </p>
           </div>
+
+          <div className={styles["authentication__form-txt--secret"]}>
+            <p>Or use this secret credentials:</p>{" "}
+            <p>login: guest@guest.com</p>
+            <p>password: guest</p>
+          </div>
         </div>
+        {/* <div className={styles.authentication__info}>
+          <h2 className={styles["authentication__info-title"]}>
+            Feel free use this credentials:
+          </h2>
+          <div className={styles["authentication__info-txt"]}>
+            <p>login:</p>
+            <p className={styles["authentication__info-txt--cta"]}>
+              guest@guest.com
+            </p>
+          </div>
+          <div className={styles["authentication__info-txt"]}>
+            <p>password:</p>
+            <p className={styles["authentication__info-txt--cta"]}>
+            guest
+            </p>
+          </div>
+        </div> */}
         <div className={styles.authentication__quote}>
           "What makes the desert beautiful is that somewhere it hides a well."
           <span className={styles["authentication__quote-author"]}>

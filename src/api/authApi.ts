@@ -22,8 +22,8 @@ const authApi = api.injectEndpoints({
         try {
           await queryFulfilled
           dispatch(setUserInfoRequestState(RequestState.SUCCESS))
-          toast.success("Signup successfully, welcome")
-          toast.info("React to at least 50 cards, and we'll let you know your personality")
+          toast.success("Signup successfully, welcome", { autoClose: 4000 })
+          toast.info("React to at least 3 cards, and we'll let you know your personality", { autoClose: 10000 })
         } catch (error) {
           dispatch(setUserInfoRequestState(RequestState.ERROR))
           toast.error(getErrorMessage(error as ApiError))

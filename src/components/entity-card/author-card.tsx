@@ -29,7 +29,7 @@ export const AuthorCard = ({
   }
 
   const changeDirectory = (name: string) => {
-    console.log(name)
+    // console.log(name)
   }
 
   return (
