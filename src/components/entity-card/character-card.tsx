@@ -31,7 +31,7 @@ export const CharacterCard = ({
   }
 
   const changeDirectory = (email: string) => {
-    console.log(email)
+    // console.log(email)
   }
 
   return (

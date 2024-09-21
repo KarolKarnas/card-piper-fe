@@ -27,7 +27,7 @@ export const Header = () => {
     >
       <Logo />
 
-      <p>
+      <p className={styles.header__info}>
         Hello <strong>{userMe.email}</strong>
         {totalReactions < MINIMUM_REACTION_NUM
           ? `, you need to react to ${MINIMUM_REACTION_NUM - totalReactions} more`

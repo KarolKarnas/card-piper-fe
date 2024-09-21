@@ -1,6 +1,7 @@
 @use "../../styles/colors";
 @use "../../styles/fonts";
 @use "../../styles/spacing";
+@use "../../styles/breakpoints";
 
 .sidebar {
   width: 30%;
@@ -13,10 +14,14 @@
 
   &.light {
     background-color: colors.$white-200;
-    border-left: 1px solid colors.$grey-200;
+    border-left: 1px solid colors.$white-500;
   }
   &.dark {
     background-color: colors.$grey-800;
     border-left: 1px solid colors.$grey-600;
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 }

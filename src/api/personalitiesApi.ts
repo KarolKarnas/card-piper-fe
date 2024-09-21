@@ -68,7 +68,7 @@ const personalitiesApi = api.injectEndpoints({
           }
         } catch (error) {
           dispatch(setPersonalitiesRequestState(RequestState.ERROR))
-          console.log(error)
+          // console.log(error)
         }
       },
       providesTags: (result, error) => [{ type: "Personalities" }],
@@ -96,7 +96,7 @@ const personalitiesApi = api.injectEndpoints({
         try {
           const { data } = await queryFulfilled
           if (data) {
-            console.log(data)
+            // console.log(data)
             dispatch(
               setCreatePersonalityReactionRequestState({
                 id: id,

@@ -106,10 +106,10 @@
   // }
 
   &.author {
-    background-color: rgba($color: colors.$blue-500, $alpha: 0.3);
+    background-color: rgba($color: colors.$navy-500, $alpha: 0.3);
     &:hover,
     &[data-state="open"] {
-      background-color: rgba($color: colors.$blue-500, $alpha: 0.5);
+      background-color: rgba($color: colors.$navy-500, $alpha: 0.5);
     }
   }
   &.book {
@@ -120,10 +120,10 @@
     }
   }
   &.quote {
-    background-color: rgba($color: colors.$navy-500, $alpha: 0.3);
+    background-color: rgba($color: colors.$blue-500, $alpha: 0.3);
     &:hover,
     &[data-state="open"] {
-      background-color: rgba($color: colors.$navy-500, $alpha: 0.5);
+      background-color: rgba($color: colors.$blue-500, $alpha: 0.5);
     }
   }
   &.character {
@@ -177,13 +177,13 @@
   }
 
   &.author {
-    background-color: rgba($color: colors.$blue-500, $alpha: 0.2);
+    background-color: rgba($color: colors.$navy-500, $alpha: 0.2);
   }
   &.book {
     background-color: rgba($color: colors.$yellow-500, $alpha: 0.2);
   }
   &.quote {
-    background-color: rgba($color: colors.$navy-500, $alpha: 0.2);
+    background-color: rgba($color: colors.$blue-500, $alpha: 0.2);
   }
   &.character {
     background-color: rgba($color: colors.$green-500, $alpha: 0.2);

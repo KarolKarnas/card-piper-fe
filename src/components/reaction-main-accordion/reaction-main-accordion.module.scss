@@ -15,10 +15,10 @@
   // background-color: #e0e0e0; /* --mauve-6 */
   // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* --black-a4 */
   &.light {
-    background-color: colors.$grey-200;
+    background-color: colors.$white-500;
   }
   &.dark {
-    background-color: colors.$grey-600;
+    background-color: colors.$grey-400;
   }
   button {
     border: none;
@@ -119,22 +119,22 @@
   }
 
   &.author {
-    // background-color: rgba($color: colors.$blue-500, $alpha: 0.25);
+    background-color: rgba($color: colors.$navy-500, $alpha: 0.85);
     .AccordionChevron {
-      color: colors.$blue-500;
+      color: colors.$navy-500;
     }
     &:hover {
-      background-color: rgba($color: colors.$blue-500, $alpha: 0.75);
+      background-color: rgba($color: colors.$navy-500, $alpha: 0.75);
     }
     &[data-state="open"] {
-      background-color: colors.$blue-500;
+      background-color: colors.$navy-500;
       .AccordionChevron {
         color: colors.$white-100;
       }
     }
   }
   &.book {
-    // background-color: rgba($color: colors.$yellow-500, $alpha: 0.25);
+    background-color: rgba($color: colors.$yellow-500, $alpha: 0.85);
     .AccordionChevron {
       color: colors.$yellow-500;
     }
@@ -149,22 +149,22 @@
     }
   }
   &.quote {
-    // background-color: rgba($color: colors.$navy-500, $alpha: 0.25);
+    background-color: rgba($color: colors.$blue-500, $alpha: 0.85);
     .AccordionChevron {
-      color: colors.$navy-500;
+      color: colors.$blue-500;
     }
     &:hover {
-      background-color: rgba($color: colors.$navy-500, $alpha: 0.75);
+      background-color: rgba($color: colors.$blue-500, $alpha: 0.75);
     }
     &[data-state="open"] {
-      background-color: colors.$navy-500;
+      background-color: colors.$blue-500;
       .AccordionChevron {
         color: colors.$white-100;
       }
     }
   }
   &.character {
-    // background-color: rgba($color: colors.$green-500, $alpha: 0.25);
+    background-color: rgba($color: colors.$green-500, $alpha: 0.85);
     .AccordionChevron {
       color: colors.$green-500;
     }
@@ -179,7 +179,7 @@
     }
   }
   &.user {
-    // background-color: rgba($color: colors.$orange-500, $alpha: 0.25);
+    background-color: rgba($color: colors.$orange-500, $alpha: 0.85);
     .AccordionChevron {
       color: colors.$orange-500;
     }
