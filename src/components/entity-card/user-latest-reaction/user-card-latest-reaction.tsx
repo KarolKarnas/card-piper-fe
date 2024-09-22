@@ -1,6 +1,7 @@
 import { Entity, type Reaction } from "../../../types"
 import { ReactionIcon } from "../../reaction-icon/reaction-icon"
 import styles from "./user-card-latest-reaction.module.scss"
+import clsx from "clsx"
 
 const getContentFromReaction = (reaction: Reaction): React.ReactNode => {
   switch (reaction.entity) {
@@ -36,8 +37,17 @@ export const UserLatestReaction = ({
           const content = getContentFromReaction(reaction)
 
           return content ? (
-            <li key={index}>
-              {content} <ReactionIcon reactionType={reaction.type} />
+            <li
+              key={index}
+              className={clsx({
+                [styles.character]: reaction.entity === Entity.CHARACTER,
+                [styles.user]: reaction.entity === Entity.USER,
+                [styles.author]: reaction.entity === Entity.AUTHOR,
+                [styles.book]: reaction.entity === Entity.BOOK,
+                [styles.quote]: reaction.entity === Entity.QUOTE,
+              })}
+            >
+              <ReactionIcon reactionType={reaction.type} /> {content}
             </li>
           ) : null
         })}

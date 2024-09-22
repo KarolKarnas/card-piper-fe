@@ -22,7 +22,7 @@
 
 .AccordionItem {
   overflow: hidden;
-  margin-top: 1px;
+  // margin-top: 1px;
   &.light {
     background-color: colors.$white-200;
   }
@@ -193,7 +193,7 @@
   }
 
   .AccordionContentText {
-    padding: 5px;
+    // padding: 5px;
   }
 }
 

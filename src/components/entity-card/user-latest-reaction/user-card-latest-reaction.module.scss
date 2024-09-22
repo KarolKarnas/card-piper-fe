@@ -1,6 +1,40 @@
+@use "../../../styles/colors";
+@use "../../../styles/fonts";
+@use "../../../styles/mixins";
+@use "../../../styles/spacing";
+@use "../../../styles/breakpoints";
+
 .container {
   text-align: center;
   ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
+    li {
+      text-align: left;
+      padding: spacing.$s2 spacing.$s1;
+
+      &:not(:last-child) {
+        &.character {
+          border-bottom: 1px solid rgba(colors.$green-500, $alpha: 0.3);
+        }
+        
+        &.user {
+          border-bottom: 1px solid rgba($color: colors.$orange-500, $alpha: 0.3);
+        }
+
+        &.author {
+          border-bottom: 1px solid rgba($color: colors.$navy-500, $alpha: 0.3);
+        }
+
+        &.book {
+          border-bottom: 1px solid rgba($color: colors.$yellow-500, $alpha: 0.3);
+        }
+
+        &.quote {
+          border-bottom: 1px solid rgba(colors.$blue-500, $alpha: 0.3);
+        }
+      }
+    }
   }
 }
