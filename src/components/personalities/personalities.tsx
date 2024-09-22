@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import styles from "./personalities.module.scss"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { RequestState } from "../../types/request"
@@ -19,35 +19,26 @@ import { useTheme } from "../../hooks/use-theme"
 import clsx from "clsx"
 import { SwitchFeed } from "../switch-feed/switch-feed"
 
-export const Personalities = () => {
+export const Personalities: React.FC = () => {
   const [skip, setSkip] = useState(0)
-  const [take, setTake] = useState(10)
-  const [entity, setEntity] = useState(Entity.AUTHOR)
-  const [entities, setEntities] = useState<Entity[]>(Object.values(Entity).filter(value => value !== Entity.USER))
+  const [take] = useState(10)
+  const [entity] = useState(Entity.AUTHOR)
+  const [entities, setEntities] = useState<Entity[]>(
+    Object.values(Entity).filter(value => value !== Entity.USER),
+  )
 
   const dark = useTheme()
-  // const [clear, setClear] = useState(false);
-
   const dispatch = useAppDispatch()
-
-  const handleCheckboxChange = (entity: Entity, checked: boolean) => {
-    dispatch(clearAllPersonalities())
-
-    setEntities(prev =>
-      checked ? [...prev, entity] : prev.filter(e => e !== entity),
-    )
-
-    setSkip(0)
-    return
-  }
-
   const containerRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
+
   const userMe = useAppSelector(selectUserMe)
   const userMeRequestState = useAppSelector(selectUserMeRequestState)
-
   const personalitiesRequestState = useAppSelector(
     selectPersonalitiesRequestState,
   )
+  const data = useAppSelector(selectAllPersonalities)
+
   const isLoading =
     personalitiesRequestState === RequestState.LOADING ||
     userMeRequestState === RequestState.LOADING
@@ -58,37 +49,48 @@ export const Personalities = () => {
     userMe ? userMe.personality : null,
     entity,
     entities,
-    // clear
   )
 
-  useEffect(() => {
-    refetch()
-    // setClear(false);
-  }, [entities, skip, take, userMe, refetch])
+  const handleCheckboxChange = useCallback(
+    (entity: Entity, checked: boolean) => {
+      dispatch(clearAllPersonalities())
+      setEntities(prev =>
+        checked ? [...prev, entity] : prev.filter(e => e !== entity),
+      )
+      setSkip(0)
+    },
+    [dispatch],
+  )
 
-  const data = useAppSelector(selectAllPersonalities)
-
-  const observer = useRef(
-    new IntersectionObserver(
+  const initializeObserver = useCallback(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect()
+    }
+    observerRef.current = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting && !isLoading) {
           setSkip(prevSkip => prevSkip + 1)
         }
       },
-      { threshold: 1 },
-    ),
-  )
+      { threshold: 0.1, rootMargin: "100px" },
+    )
+    if (containerRef.current) {
+      observerRef.current.observe(containerRef.current)
+    }
+  }, [isLoading])
 
   useEffect(() => {
-    if (containerRef.current) {
-      observer.current.observe(containerRef.current)
-    }
+    initializeObserver()
     return () => {
-      if (containerRef.current) {
-        observer.current.unobserve(containerRef.current)
+      if (observerRef.current) {
+        observerRef.current.disconnect()
       }
     }
-  }, [containerRef.current])
+  }, [initializeObserver])
+
+  useEffect(() => {
+    refetch()
+  }, [entities, skip, userMe, refetch])
 
   return (
     <div className={styles.container}>
@@ -158,7 +160,7 @@ export const Personalities = () => {
       </div>
       <div
         ref={containerRef}
-        style={{ height: "10px", backgroundColor: "red" }}
+        style={{ height: "20px", backgroundColor: "transparent" }}
       />
       {isLoading && <div>Loading more...</div>}
     </div>
