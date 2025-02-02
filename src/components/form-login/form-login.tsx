@@ -13,8 +13,6 @@ export type FormLoginProps = {
 }
 
 const FormLogin = ({ role }: FormLoginProps) => {
-  // const [errorMessage, dispatch] = useFormState(authenticate, undefined);
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -31,8 +29,8 @@ const FormLogin = ({ role }: FormLoginProps) => {
   }
 
   return (
-    <Form.Root onSubmit={e => handleForm(e)} className={styles.FormRoot}>
-      <Form.Field className={styles.FormField} name="email">
+    <Form.Root onSubmit={e => handleForm(e)} className={styles["form-root"]}>
+      <Form.Field className={styles["form-field"]} name="email">
         <div
           style={{
             display: "flex",
@@ -40,17 +38,17 @@ const FormLogin = ({ role }: FormLoginProps) => {
             justifyContent: "space-between",
           }}
         >
-          <Form.Label className={styles.FormLabel}>Email</Form.Label>
-          <Form.Message className={styles.FormMessage} match="valueMissing">
+          <Form.Label className={styles["form-label"]}>Email</Form.Label>
+          <Form.Message className={styles["form-message"]} match="valueMissing">
             Please enter your Email
           </Form.Message>
-          <Form.Message className={styles.FormMessage} match="typeMismatch">
+          <Form.Message className={styles["form-message"]} match="typeMismatch">
             Please provide a valid Email
           </Form.Message>
         </div>
         <Form.Control asChild>
           <input
-            className={styles.Input}
+            className={styles["login-input"]}
             type="email"
             required
             placeholder="Enter your email"
@@ -58,7 +56,7 @@ const FormLogin = ({ role }: FormLoginProps) => {
           />
         </Form.Control>
       </Form.Field>
-      <Form.Field className={styles.FormField} name="password">
+      <Form.Field className={styles["form-field"]} name="password">
         <div
           style={{
             display: "flex",
@@ -66,21 +64,20 @@ const FormLogin = ({ role }: FormLoginProps) => {
             justifyContent: "space-between",
           }}
         >
-          <Form.Label className={styles.FormLabel}>Password</Form.Label>
-          <Form.Message className={styles.FormMessage} match="valueMissing">
+          <Form.Label className={styles["form-label"]}>Password</Form.Label>
+          <Form.Message className={styles["form-message"]} match="valueMissing">
             Please enter your password
           </Form.Message>
-          <Form.Message className={styles.FormMessage} match="typeMismatch">
+          <Form.Message className={styles["form-message"]} match="typeMismatch">
             Please provide a valid password
           </Form.Message>
         </div>
         <Form.Control asChild>
           <input
-            className={styles.Input}
+            className={styles["login-input"]}
             type="password"
             name="password"
             placeholder="Enter password"
-            // ref={passwordRef}
             required
             onChange={e => setPassword(e.target.value)}
           />
@@ -90,17 +87,6 @@ const FormLogin = ({ role }: FormLoginProps) => {
       <Form.Submit asChild>
         <ButtonSubmit color="blue" text="Submit" type="submit" />
       </Form.Submit>
-      {/* <div
-				className='flex h-8 items-end space-x-1'
-				aria-live='polite'
-				aria-atomic='true'
-			>
-				{errorMessage && (
-					<>
-						<p className={styles.FormMessage}>{errorMessage}</p>
-					</>
-				)}
-			</div> */}
     </Form.Root>
   )
 }

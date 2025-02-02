@@ -19,7 +19,7 @@ const App = () => {
   const dark = useTheme()
 
   return (
-    <div className={styles.App}>
+    <div className={styles.app}>
       <ToastContainer
         position="top-center"
         autoClose={5000}

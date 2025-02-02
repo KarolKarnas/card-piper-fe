@@ -1,4 +1,4 @@
-import { ReactionType, type Reaction } from "../../types"
+import { ReactionType } from "../../types"
 import styles from "./reaction-icon.module.scss"
 import clsx from "clsx"
 import { reactionIcons } from "../reaction-buttons/reaction-buttons"

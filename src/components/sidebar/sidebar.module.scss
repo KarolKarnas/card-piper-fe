@@ -7,15 +7,14 @@
   width: 30%;
   position: sticky;
   top: 40px;
-  // padding: 0 spacing.$s8;
   height: calc(100vh - 40px);
   overflow-y: scroll;
-
 
   &.light {
     background-color: colors.$white-200;
     border-left: 1px solid colors.$white-500;
   }
+  
   &.dark {
     background-color: colors.$grey-800;
     border-left: 1px solid colors.$grey-600;

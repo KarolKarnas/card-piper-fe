@@ -17,9 +17,11 @@
 
   &__info {
     display: none;
+
     @include breakpoints.lg {
       display: inherit;
     }
+
     strong {
       margin-left: spacing.$s1;
     }
@@ -30,6 +32,7 @@
     background-color: colors.$white-300;
     border-bottom: 1px solid colors.$white-500;
   }
+  
   &.dark {
     background-color: colors.$grey-950;
     border-bottom: 1px solid colors.$grey-700;

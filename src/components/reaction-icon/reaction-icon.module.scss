@@ -17,20 +17,22 @@
   color: colors.$white-100;
   margin-right: 1px;
 
-
-
   &.like {
     background-color: colors.$blue-400;
   }
+
   &.love {
     background-color: colors.$red-400;
   }
+
   &.meh {
     background-color: colors.$green-600;
   }
+
   &.dislike {
     background-color: colors.$navy-500;
   }
+  
   &.hate {
     background-color: colors.$grey-200;
   }

@@ -10,14 +10,12 @@ import ReactionButtons from "../reaction-buttons/reaction-buttons"
 export type QuoteCardProps = {
   personalityId: number
   quote: Quote
-  distance: number
   entity: Entity
 }
 
 export const QuoteCard = ({
   personalityId,
   quote,
-  distance,
   entity,
 }: QuoteCardProps) => {
   const dark = useTheme()
@@ -28,19 +26,12 @@ export const QuoteCard = ({
     return <div>LOADING</div>
   }
 
-  const changeDirectory = (email: string) => {
-    // console.log(email)
-  }
-
   return (
     <div
       className={clsx(styles.card, {
         [styles.dark]: dark,
         [styles.light]: !dark,
       })}
-      onClick={() => {
-        changeDirectory(quote.text)
-      }}
     >
       <div
         className={clsx(styles["content-container"], {
@@ -56,7 +47,6 @@ export const QuoteCard = ({
             <p className={styles.name}>{quote.author.name}</p>
           </div>
         ) : null}
-        {/* <h3>distance {distance}</h3> */}
 
         <ReactionButtons
           entity={entity}

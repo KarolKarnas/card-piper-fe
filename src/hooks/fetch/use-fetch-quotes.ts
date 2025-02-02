@@ -3,7 +3,6 @@ import { useGetQuotesQuery } from "../../api/quotesApi"
 import { useAppDispatch } from "../../store/hooks"
 import { setAllQuotes } from "../../store/quotesSlice"
 import type { PersonalityStats } from "../../types/entities"
-// import { QuotesRequestParams } from '../../../types/request';
 
 export const useFetchQuotes = (
   skip: number,
@@ -12,7 +11,7 @@ export const useFetchQuotes = (
 ) => {
   const dispatch = useAppDispatch()
 
-  const { data, isFetching, isError, refetch } = useGetQuotesQuery({
+  const { data, refetch } = useGetQuotesQuery({
     skip,
     take,
     userPersonality,

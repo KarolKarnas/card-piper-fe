@@ -1,6 +1,5 @@
 import type { PayloadAction } from "@reduxjs/toolkit"
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
-import type { UserInfo, UserMe } from "../types/entities"
+import { createSlice } from "@reduxjs/toolkit"
 import { RequestState } from "../types/request"
 import type { RootState } from "./store"
 

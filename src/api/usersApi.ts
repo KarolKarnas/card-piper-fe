@@ -8,14 +8,14 @@ const URL_API_USERS = "/users"
 const usersApi = api.injectEndpoints({
   endpoints: build => ({
     getUserMe: build.query<UserMe, void>({
-      query: args => {
+      query: _args => {
         return {
           url: `${URL_API_USERS}/me`,
           method: "GET",
         }
       },
       keepUnusedDataFor: 5,
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
           dispatch(setUserMeRequestState(RequestState.LOADING))
           const { data } = await queryFulfilled
@@ -28,7 +28,7 @@ const usersApi = api.injectEndpoints({
           console.log(error)
         }
       },
-      providesTags: (result, error) => [{ type: "Users" }],
+      providesTags: (_result, _error) => [{ type: "Users" }],
     }),
     updateUserMe: build.mutation<{ message: string }, Partial<UserMe>>({
       query: user => ({
@@ -36,7 +36,7 @@ const usersApi = api.injectEndpoints({
         method: "PATCH",
         body: user,
       }),
-      async onQueryStarted(user, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_user, { dispatch, queryFulfilled }) {
         try {
           dispatch(setUserMeRequestState(RequestState.LOADING))
           const { data } = await queryFulfilled
