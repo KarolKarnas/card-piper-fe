@@ -165,23 +165,8 @@ export type ReactionCreate = {
   reactedUserId: number | null
 }
 
-// export type EntityTotal = {
-//   TOTAL: number
-//   LOVE: number
-//   LIKE: number
-//   DISLIKE: number
-//   HATE: number
-// }
-
 export type EntityTotal = Record<ReactionType | "TOTAL", number>
-// export type ReactionTotal = {
-//   TOTAL: number
-//   AUTHOR: EntityTotal
-//   BOOK: EntityTotal
-//   QUOTE: EntityTotal
-//   CHARACTER: EntityTotal
-//   USER: EntityTotal
-// }
+
 export type TotalReaction = Record<Entity, EntityTotal>
 
 export type LatestReaction = Record<Entity, Record<ReactionType, Reaction[]>>

@@ -11,9 +11,6 @@
   align-items: center;
 
   &__label {
-    // width: 100%;
-    // text-align: center;
-    // padding-right: spacing.$s2;
     font-size: fonts.$xs;
     color: colors.$white-100;
     @include mixins.drop-shadow-md-color(
@@ -59,22 +56,30 @@
         background-color: colors.$navy-500;
       }
     }
+  
     &--user {
+  
       &[data-state="checked"] {
         background-color: colors.$orange-500;
       }
     }
+  
     &--book {
+  
       &[data-state="checked"] {
         background-color: colors.$yellow-500;
       }
     }
+  
     &--quote {
+  
       &[data-state="checked"] {
         background-color: colors.$blue-500;
       }
     }
+  
     &--character {
+  
       &[data-state="checked"] {
         background-color: colors.$green-500;
       }

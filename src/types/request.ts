@@ -1,4 +1,4 @@
-import type { Entity, Reaction, ReactionType } from "./entities"
+import type { Entity, ReactionType } from "./entities"
 import type { PersonalityStats } from "./entities"
 
 export enum RequestState {
@@ -26,15 +26,6 @@ export type CreatePersonalityReactionRequestParams = {
   id: number
   createReaction: CreateReactionRequest
 }
-
-// export type ReactionsRequestParams = {
-//   userId: number
-//   all?: boolean
-//   type?: ReactionType
-//   entity?: Entity
-//   favorite?: string
-//   list?: string
-// }
 
 export type SignupRequestParams = {
   email: string

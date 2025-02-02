@@ -1,8 +1,6 @@
 import clsx from "clsx"
 import { useTheme } from "../../hooks/use-theme"
 import { SidebarReactions } from "./sidebar-reactions"
-import { SidebarUser } from "./sidebar-user"
-
 import styles from "./sidebar.module.scss"
 
 export const Sidebar = () => {
@@ -15,7 +13,6 @@ export const Sidebar = () => {
         [styles.light]: !dark,
       })}
     >
-      {/* <SidebarUser /> */}
       <SidebarReactions />
     </div>
   )

@@ -2,7 +2,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 import type { RootState } from "./store"
 import { RequestState } from "../types/request"
-import type { Personality, Reaction } from "../types"
+import type { Personality} from "../types"
 
 export type CreateReactionRequestState = {
   id: number
