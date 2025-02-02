@@ -15,14 +15,14 @@ const AccordionTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ComponentPropsWithoutRef<typeof Accordion.Trigger>
 >(({ children, className, ...props }, forwardedRef) => (
-  <Accordion.Header className={styles.AccordionHeader}>
+  <Accordion.Header className={styles["accordion-header"]}>
     <Accordion.Trigger
-      className={clsx(styles.AccordionTrigger, className)}
+      className={clsx(styles["accordion-trigger"], className)}
       {...props}
       ref={forwardedRef}
     >
       {children}
-      <FaChevronDown className={styles.AccordionChevron} aria-hidden />
+      <FaChevronDown className={styles["accordion-chevron"]} aria-hidden />
     </Accordion.Trigger>
   </Accordion.Header>
 ))
@@ -34,11 +34,11 @@ const AccordionContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Accordion.Content>
 >(({ children, className, ...props }, forwardedRef) => (
   <Accordion.Content
-    className={clsx(styles.AccordionContent, className)}
+    className={clsx(styles["accordion-content"], className)}
     {...props}
     ref={forwardedRef}
   >
-    <div className={styles.AccordionContentText}>{children}</div>
+    <div>{children}</div>
   </Accordion.Content>
 ))
 
@@ -80,7 +80,7 @@ export const ReactionMainAccordion = () => {
   return (
     <div className={styles.container}>
       <Accordion.Root
-        className={clsx(styles.AccordionRoot, {
+        className={clsx(styles["accordion-root"], {
           [styles.dark]: dark,
           [styles.light]: !dark,
         })}
@@ -95,7 +95,7 @@ export const ReactionMainAccordion = () => {
           return (
             <Accordion.Item
               key={`${name}-${index}`}
-              className={clsx(styles.AccordionItem, {
+              className={clsx(styles["accordion-item"], {
                 [styles.dark]: dark,
                 [styles.light]: !dark,
               })}

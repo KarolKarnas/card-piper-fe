@@ -2,7 +2,7 @@
 @use "../../styles/fonts";
 @use "../../styles/spacing";
 
-.AccordionRoot {
+.accordion-root {
   margin-top: -1px;
   width: 100%;
 
@@ -19,7 +19,7 @@
   }
 }
 
-.AccordionItem {
+.accordion-item {
   overflow: hidden;
 
   &.light {
@@ -36,11 +36,11 @@
   }
 }
 
-.AccordionHeader {
+.accordion-header {
   display: flex;
 }
 
-.AccordionTrigger {
+.accordion-trigger {
   font-family: fonts.$s_alternative;
   background-color: transparent;
   color: colors.$white-100;
@@ -55,7 +55,7 @@
   font-weight: 400;
   cursor: pointer;
 
-  .AccordionChevron {
+  .accordion-chevron {
     transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
   }
 
@@ -96,7 +96,7 @@
   &.author {
     background-color: rgba($color: colors.$navy-500, $alpha: 0.85);
 
-    .AccordionChevron {
+    .accordion-chevron {
       color: colors.$navy-500;
     }
 
@@ -107,7 +107,7 @@
     &[data-state="open"] {
       background-color: colors.$navy-500;
 
-      .AccordionChevron {
+      .accordion-chevron {
         color: colors.$white-100;
       }
     }
@@ -115,7 +115,7 @@
   &.book {
     background-color: rgba($color: colors.$yellow-500, $alpha: 0.85);
 
-    .AccordionChevron {
+    .accordion-chevron {
       color: colors.$yellow-500;
     }
 
@@ -126,7 +126,7 @@
     &[data-state="open"] {
       background-color: colors.$yellow-500;
 
-      .AccordionChevron {
+      .accordion-chevron {
         color: colors.$white-100;
       }
     }
@@ -134,47 +134,55 @@
   &.quote {
     background-color: rgba($color: colors.$blue-500, $alpha: 0.85);
 
-    .AccordionChevron {
+    .accordion-chevron {
       color: colors.$blue-500;
     }
 
     &:hover {
       background-color: rgba($color: colors.$blue-500, $alpha: 0.75);
     }
-    
+
     &[data-state="open"] {
       background-color: colors.$blue-500;
-      .AccordionChevron {
+
+      .accordion-chevron {
         color: colors.$white-100;
       }
     }
   }
   &.character {
     background-color: rgba($color: colors.$green-500, $alpha: 0.85);
-    .AccordionChevron {
+
+    .accordion-chevron {
       color: colors.$green-500;
     }
+
     &:hover {
       background-color: rgba($color: colors.$green-500, $alpha: 0.75);
     }
+
     &[data-state="open"] {
       background-color: colors.$green-500;
-      .AccordionChevron {
+
+      .accordion-chevron {
         color: colors.$white-100;
       }
     }
   }
   &.user {
     background-color: rgba($color: colors.$orange-500, $alpha: 0.85);
-    .AccordionChevron {
+
+    .accordion-chevron {
       color: colors.$orange-500;
     }
+
     &:hover {
       background-color: rgba($color: colors.$orange-500, $alpha: 0.75);
     }
+
     &[data-state="open"] {
       background-color: colors.$orange-500;
-      .AccordionChevron {
+      .accordion-chevron {
         color: colors.$white-100;
       }
     }
@@ -182,19 +190,19 @@
 
   // default hover
   &:hover {
-    background-color: #f5f5f5; /* --mauve-2 */
+    background-color: #f5f5f5;
   }
 
-  &[data-state="open"] > .AccordionChevron {
+  &[data-state="open"] > .accordion-chevron {
     transform: rotate(180deg);
   }
 }
 
-.AccordionContent {
+.accordion-content {
   overflow: hidden;
   font-size: 15px;
-  color: #757575; /* --mauve-11 */
-  background-color: #f5f5f5; /* --mauve-2 */
+  color: #757575;
+  background-color: #f5f5f5;
 
   &[data-state="open"] {
     animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
@@ -202,10 +210,6 @@
 
   &[data-state="closed"] {
     animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
-  }
-
-  .AccordionContentText {
-    // padding: 5px;
   }
 }
 
