@@ -10,12 +10,12 @@
   align-items: center;
   justify-content: space-between;
   padding: spacing.$s1;
-
   transition-property: transform, background-color;
   transition-duration: 100ms;
   background-color: colors.$navy-300;
 
   &:hover {
+
     cursor: pointer;
     transition-property: transform, background-color;
     transition-duration: 200ms;
@@ -35,12 +35,14 @@
 
     &.light {
       background-color: rgba(colors.$white-200, 0.8);
+
       h3 {
         color: colors.$grey-900;
       }
     }
     &.dark {
       background-color: rgba(colors.$grey-950, 0.9);
+
       h3 {
         color: colors.$purple-100;
       }
@@ -51,10 +53,12 @@
       font-size: fonts.$xl;
       color: colors.$navy-500;
       text-align: center;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-orange-700,
         colors.$shadow-orange-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$xl4;
       }
@@ -62,11 +66,12 @@
     h3 {
       font-size: fonts.$sm;
       text-align: center;
-      // color: colors.$purple-100;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$base;
       }
@@ -74,12 +79,13 @@
 
     h4 {
       font-size: fonts.$sm;
-
       color: colors.$white-100;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$base;
       }
@@ -90,10 +96,12 @@
       text-align: left;
       hyphens: auto;
       color: colors.$white-300;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$base;
       }

@@ -38,10 +38,6 @@
   border-color: colors.$navy-600;
   color: colors.$white-300;
 
-  // @include mixins.drop-shadow-md-color(
-  //   colors.$shadow-white-700,
-  //   colors.$shadow-white-600
-  // );
   &:hover {
     background-color: rgba(colors.$navy-500, $alpha: 0.75);
   }

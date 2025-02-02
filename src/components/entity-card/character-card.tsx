@@ -11,14 +11,12 @@ import ReactionButtons from "../reaction-buttons/reaction-buttons"
 export type CharacterCardProps = {
   personalityId: number
   character: Character
-  distance: number
   entity: Entity
 }
 
 export const CharacterCard = ({
   personalityId,
   character,
-  distance,
   entity,
 }: CharacterCardProps) => {
 
@@ -30,19 +28,12 @@ export const CharacterCard = ({
     return <div>LOADING</div>
   }
 
-  const changeDirectory = (email: string) => {
-    // console.log(email)
-  }
-
   return (
     <div
       className={clsx(styles.card, {
         [styles.dark]: dark,
         [styles.light]: !dark,
       })}
-      onClick={() => {
-        changeDirectory(character.name)
-      }}
     >
       <div
         className={clsx(styles["content-container"], {
@@ -52,7 +43,6 @@ export const CharacterCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{character.name}</h2>
-        {/* <h3>distance {distance}</h3> */}
         <ul>Known from:{character.books.map((book, index) => <li key={index}>{book.title}</li>)}</ul>
 
           <ReactionButtons

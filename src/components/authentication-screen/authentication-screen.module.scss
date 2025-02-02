@@ -23,7 +23,6 @@
       colors.$shadow-black-700,
       colors.$shadow-black-600
     );
-    // font-family: fonts.$s_alternative_2;
   }
 
   &__about {
@@ -63,6 +62,9 @@
     align-items: center;
     justify-content: center;
     width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    padding: spacing.$s5 spacing.$s6;
+    margin-bottom: spacing.$s2;
     @include breakpoints.md {
       width: 70%;
     }
@@ -72,9 +74,6 @@
     @include breakpoints.xl {
       width: 40%;
     }
-    border: 1px solid rgba(255, 255, 255, 0.75);
-    padding: spacing.$s5 spacing.$s6;
-    margin-bottom: spacing.$s2;
     @include breakpoints.lg {
       padding: spacing.$s5 spacing.$s7;
     }
@@ -82,7 +81,7 @@
       padding: spacing.$s5 spacing.$s9;
     }
     @include mixins.box-shadow-2xl;
-    
+
     &-title {
       color: colors.$navy-550;
       mix-blend-mode: multiply;
@@ -100,73 +99,19 @@
       gap: spacing.$s1;
       font-weight: 500;
       font-size: fonts.$xs;
-      
+
       &--cta {
         font-weight: 700;
         cursor: pointer;
       }
-      
+
       &--secret {
         margin-top: spacing.$s2;
         text-align: center;
         font-size: fonts.$xs2;
       }
     }
-
   }
-
-  // &__info {
-  //   z-index: 2;
-  //   display: flex;
-  //   background-color: colors.$navy-200;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   width: 90%;
-  //   @include breakpoints.md {
-  //     width: 70%;
-  //   }
-  //   @include breakpoints.lg {
-  //     width: 60%;
-  //   }
-  //   @include breakpoints.xl {
-  //     width: 40%;
-  //   }
-  //   border: 1px solid rgba(255, 255, 255, 0.75);
-  //   padding: spacing.$s5 spacing.$s6;
-  //   margin-bottom: spacing.$s10;
-  //   @include breakpoints.lg {
-  //     padding: spacing.$s5 spacing.$s7;
-  //   }
-  //   @include breakpoints.xl {
-  //     padding: spacing.$s5 spacing.$s9;
-  //   }
-  //   @include mixins.box-shadow-2xl;
-
-  //   &-title {
-  //     text-align: center;
-  //     color: colors.$navy-550;
-  //     mix-blend-mode: multiply;
-  //     @include mixins.drop-shadow-md-color(
-  //       colors.$shadow-black-700,
-  //       colors.$shadow-black-600
-  //     );
-  //   }
-
-  //   &-txt {
-  //     margin-top: spacing.$s4;
-  //     color: colors.$red-400;
-  //     display: flex;
-  //     gap: spacing.$s1;
-  //     font-weight: 500;
-  //     font-size: fonts.$xs2;
-
-  //     &--cta {
-  //       font-weight: 700;
-  //       cursor: pointer;
-  //     }
-  //   }
-  // }
 
   &__quote {
     display: flex;

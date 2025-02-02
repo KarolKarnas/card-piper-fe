@@ -9,27 +9,20 @@ import ReactionButtons from "../reaction-buttons/reaction-buttons"
 export type AuthorCardProps = {
   personalityId: number
   author: Author
-  distance: number
   entity: Entity
 }
 
 export const AuthorCard = ({
   personalityId,
   author,
-  distance,
   entity,
 }: AuthorCardProps) => {
   const userMe = useUserMe()
   const dark = useTheme()
-
   const isLoading = !userMe
 
   if (isLoading) {
     return <div>LOADING</div>
-  }
-
-  const changeDirectory = (name: string) => {
-    // console.log(name)
   }
 
   return (
@@ -38,9 +31,6 @@ export const AuthorCard = ({
         [styles.dark]: dark,
         [styles.light]: !dark,
       })}
-      onClick={() => {
-        changeDirectory(author.name)
-      }}
     >
       <div
         className={clsx(styles["content-container"], {
@@ -50,7 +40,6 @@ export const AuthorCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{author.name}</h2>
-        {/* <h3>distance {distance}</h3> */}
         <h3 dangerouslySetInnerHTML={{ __html: author.bio }}></h3>
 
         <ReactionButtons

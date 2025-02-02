@@ -8,7 +8,6 @@ import { RequestState } from "../types/request"
 import type { Personality } from "../types/entities"
 import {
   addPersonalities,
-  setAllPersonalities,
   setCreatePersonalityReactionRequestState,
   setPersonalitiesRequestState,
   updatePersonality,
@@ -63,11 +62,11 @@ const personalitiesApi = api.injectEndpoints({
           const { data } = await queryFulfilled
           if (data) {
             dispatch(setPersonalitiesRequestState(RequestState.SUCCESS))
-            // dispatch(setAllPersonalities(data))
             dispatch(addPersonalities(data))
           }
         } catch (error) {
           dispatch(setPersonalitiesRequestState(RequestState.ERROR))
+          //TODO add toast with error message
           // console.log(error)
         }
       },
@@ -96,7 +95,6 @@ const personalitiesApi = api.injectEndpoints({
         try {
           const { data } = await queryFulfilled
           if (data) {
-            // console.log(data)
             dispatch(
               setCreatePersonalityReactionRequestState({
                 id: id,

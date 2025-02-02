@@ -10,15 +10,14 @@
   align-items: center;
   justify-content: space-between;
   padding: spacing.$s1;
-
   transition-property: transform, background-color;
   transition-duration: 100ms;
   background-color: colors.$orange-100;
 
 
   &:hover {
+
     cursor: pointer;
-    // transform: scale(1.015);
     transition-property: transform, background-color;
     transition-duration: 200ms;
     background-color: colors.$orange-300;
@@ -30,18 +29,21 @@
     padding: spacing.$s2;
     display: flex;
     flex-direction: column;
+
     @include breakpoints.md {
       padding: spacing.$s4;
     }
 
     &.light {
       background-color: rgba(colors.$white-100, 0.9);
+
       h3 {
         color: colors.$grey-900;
       }
     }
     &.dark {
       background-color: rgba(colors.$grey-950, 0.9);
+
       h3 {
         color: colors.$purple-100;
       }
@@ -52,10 +54,12 @@
       font-size: fonts.$xl;
       color: colors.$orange-500;
       text-align: center;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-orange-700,
         colors.$shadow-orange-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$xl4;
       }
@@ -63,11 +67,12 @@
     h3 {
       font-size: fonts.$sm;
       text-align: center;
-      // color: colors.$purple-100;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$base;
       }
@@ -77,10 +82,12 @@
       font-size: fonts.$sm;
 
       color: colors.$white-100;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+
       @include breakpoints.md {
         font-size: fonts.$base;
       }
@@ -91,10 +98,12 @@
       text-align: center;
       hyphens: auto;
       color: colors.$white-300;
+
       @include mixins.drop-shadow-md-color(
         colors.$shadow-white-700,
         colors.$shadow-white-600
       );
+      
       @include breakpoints.md {
         font-size: fonts.$base;
       }

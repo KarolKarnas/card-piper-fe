@@ -10,16 +10,10 @@ import ReactionButtons from "../reaction-buttons/reaction-buttons"
 export type BookCardProps = {
   personalityId: number
   book: Book
-  distance: number
   entity: Entity
 }
 
-export const BookCard = ({
-  personalityId,
-  book,
-  distance,
-  entity,
-}: BookCardProps) => {
+export const BookCard = ({ personalityId, book, entity }: BookCardProps) => {
   const dark = useTheme()
   const userMe = useAppSelector(selectUserMe)
   const isLoading = !userMe || !book
@@ -28,19 +22,12 @@ export const BookCard = ({
     return <div>LOADING</div>
   }
 
-  const changeDirectory = (email: string) => {
-    console.log(email)
-  }
-
   return (
     <div
       className={clsx(styles.card, {
         [styles.dark]: dark,
         [styles.light]: !dark,
       })}
-      onClick={() => {
-        changeDirectory(book.title)
-      }}
     >
       <div
         className={clsx(styles["content-container"], {
@@ -50,7 +37,6 @@ export const BookCard = ({
       >
         <CardEntity entity={entity} />
         <h2>"{book.title}"</h2>
-        {/* <h3>distance {distance}</h3> */}
         <ul>
           Characters in the book:
           {book.characters.map((character, index) => (

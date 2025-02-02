@@ -11,23 +11,13 @@ import { UserLatestReaction } from "./user-latest-reaction/user-card-latest-reac
 export type UserCardProps = {
   personalityId: number
   user: User
-  distance: number
   entity: Entity
 }
 
-export const UserCard = ({
-  personalityId,
-  user,
-  entity,
-  distance,
-}: UserCardProps) => {
+export const UserCard = ({ personalityId, user, entity }: UserCardProps) => {
   const dark = useTheme()
   const userMe = useUserMe()
   const isLoading = !userMe
-
-  const changeDirectory = (email: string) => {
-    // console.log(email)
-  }
 
   if (isLoading) {
     return <div>LOADING</div>
@@ -39,9 +29,6 @@ export const UserCard = ({
         [styles.dark]: dark,
         [styles.light]: !dark,
       })}
-      onClick={() => {
-        changeDirectory(user.email)
-      }}
     >
       <div
         className={clsx(styles["content-container"], {
@@ -51,16 +38,17 @@ export const UserCard = ({
       >
         <CardEntity entity={entity} />
         <h2>{user.email}</h2>
-        {/* <h3>distance {distance}</h3> */}
 
-        {user.reactions && <UserLatestReaction reactions={user.reactions} email={user.email} />}
-          <ReactionButtons
-            entity={entity}
-            personalityId={personalityId}
-            targetId={user.id}
-            reactions={user.reactedBy}
-            personalityName={user.email}
-          />
+        {user.reactions && (
+          <UserLatestReaction reactions={user.reactions} email={user.email} />
+        )}
+        <ReactionButtons
+          entity={entity}
+          personalityId={personalityId}
+          targetId={user.id}
+          reactions={user.reactedBy}
+          personalityName={user.email}
+        />
       </div>
     </div>
   )

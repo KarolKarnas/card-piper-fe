@@ -119,7 +119,6 @@ export const Personalities: React.FC = () => {
               <AuthorCard
                 personalityId={personality.id}
                 author={personality.author}
-                distance={personality.distance}
                 entity={personality.entity}
               />
             )}
@@ -127,7 +126,6 @@ export const Personalities: React.FC = () => {
               <BookCard
                 personalityId={personality.id}
                 book={personality.book}
-                distance={personality.distance}
                 entity={personality.entity}
               />
             )}
@@ -135,7 +133,6 @@ export const Personalities: React.FC = () => {
               <QuoteCard
                 personalityId={personality.id}
                 quote={personality.quote}
-                distance={personality.distance}
                 entity={personality.entity}
               />
             )}
@@ -143,7 +140,6 @@ export const Personalities: React.FC = () => {
               <CharacterCard
                 personalityId={personality.id}
                 character={personality.character}
-                distance={personality.distance}
                 entity={personality.entity}
               />
             )}
@@ -151,7 +147,6 @@ export const Personalities: React.FC = () => {
               <UserCard
                 personalityId={personality.id}
                 user={personality.user}
-                distance={personality.distance}
                 entity={personality.entity}
               />
             )}
